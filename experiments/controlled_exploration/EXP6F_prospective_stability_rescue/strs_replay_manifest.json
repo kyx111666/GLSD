@@ -1,0 +1,14 @@
+{
+  "sammlv": {
+    "cache": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/sammlv_strategy1_outputs.pkl",
+    "cache_sha256": "3b2264bd527bf144dfe10e03528ac5e637fc30e10a66d8d9575648754b298569",
+    "videos": 79,
+    "evaluator": "<workspace-root>/RethinkFuse_reproduction/senior_original/me_tst_video/me-tst-video/paper_metrics.py"
+  },
+  "casme3": {
+    "cache": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/casme3_strategy1_outputs.pkl",
+    "cache_sha256": "9bdcbb3fc79a3f2a4bf6729b826b5490d8a91aed913b4120c19d68cceec67bda",
+    "videos": 462,
+    "evaluator": "<workspace-root>/RethinkFuse_reproduction/senior_original/me_tst_video/me-tst-video/paper_metrics.py"
+  }
+}

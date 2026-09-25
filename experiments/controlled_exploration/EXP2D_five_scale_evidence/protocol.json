@@ -1,0 +1,205 @@
+{
+  "experiment": "GLSD controlled exploration EXP-2D",
+  "name": "Five-Scale Local Evidence Validation",
+  "only_change_from_exp2c": "local evidence neighborhood cardinality: nearest-3 -> nearest-5",
+  "reference_scale_candidates": [
+    0.75,
+    1.0,
+    1.25,
+    1.5,
+    1.75,
+    2.0,
+    2.5
+  ],
+  "evidence_scale_rule": "first five scales ranked by (absolute distance to a0, smaller scale)",
+  "evidence_scale_mapping": {
+    "0.75": [
+      0.75,
+      1.0,
+      1.25,
+      1.5,
+      1.75
+    ],
+    "1": [
+      1.0,
+      0.75,
+      1.25,
+      1.5,
+      1.75
+    ],
+    "1.25": [
+      1.25,
+      1.0,
+      1.5,
+      0.75,
+      1.75
+    ],
+    "1.5": [
+      1.5,
+      1.25,
+      1.75,
+      1.0,
+      2.0
+    ],
+    "1.75": [
+      1.75,
+      1.5,
+      2.0,
+      1.25,
+      1.0
+    ],
+    "2": [
+      2.0,
+      1.75,
+      1.5,
+      2.5,
+      1.25
+    ],
+    "2.5": [
+      2.5,
+      2.0,
+      1.75,
+      1.5,
+      1.25
+    ]
+  },
+  "mapping_validation": {
+    "length_five": true,
+    "reference_included": true,
+    "deterministic": true,
+    "dataset_or_backbone_specific_variation": false
+  },
+  "configuration_budget": 210,
+  "configuration_budget_formula": "7 reference scales x 3 radii x 10 thresholds = 210",
+  "local_aggregation": "median; missing aligned scale contributes zero",
+  "fusion": "S(c)=(G(c)+L(c))/2",
+  "local_radii": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "thresholds": [
+    0.05,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.75
+  ],
+  "outer": "LOSO",
+  "inner": "LOSO excluding outer test and inner validation subjects",
+  "selection_tiebreak": [
+    "higher F1",
+    "higher precision",
+    "fewer FP",
+    "lower config order"
+  ],
+  "bootstrap_resamples": 10000,
+  "seed": 100,
+  "outer_folds": 246,
+  "all_outer_fold_exact_replay": true,
+  "canonical_glsd_modified": false,
+  "continue_cardinality_search": false,
+  "source_sha256": {
+    "run_exp2d.py": "a4fb07bc2bb0a0af1ab71d8997c8f5c9c42945682867614bd3c2eb594ce2a78c",
+    "run_exp2c.py": "1f32a8b0abb8c23de809dcf47eb97a8041408e85617cfe81868c7862f31223db",
+    "unified_persistence.py": "56c531b3d63649c5173ffb7aa647fac6843a6f075db23b5f175f66fda1513723",
+    "equiscale_fair_validation.py": "c04c98aa3ba887459e03482886c183a76002341d8ad2656d49d08d9f2b8c206c"
+  },
+  "audits": {
+    "ME-TST/SAMMLV": {
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/sammlv_strategy1_outputs.pkl",
+      "input_sha256": "3b2264bd527bf144dfe10e03528ac5e637fc30e10a66d8d9575648754b298569",
+      "subjects": 29,
+      "videos": 79,
+      "outer_k_frequency": {
+        "5": 29
+      },
+      "inner_k_frequency": {
+        "5": 812
+      },
+      "selected_configuration_frequency": {
+        "unified|scale=2|height=0|tau=0.6|radius=2": 1,
+        "unified|scale=2|height=0|tau=0.55|radius=1": 28
+      },
+      "outer_count_replay": "PASS",
+      "fold_count": 29
+    },
+    "ME-TST/CAS(ME)3": {
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/casme3_strategy1_outputs.pkl",
+      "input_sha256": "9bdcbb3fc79a3f2a4bf6729b826b5490d8a91aed913b4120c19d68cceec67bda",
+      "subjects": 94,
+      "videos": 462,
+      "outer_k_frequency": {
+        "17": 91,
+        "16": 2,
+        "15": 1
+      },
+      "inner_k_frequency": {
+        "17": 8140,
+        "16": 388,
+        "15": 180,
+        "14": 6,
+        "18": 28
+      },
+      "selected_configuration_frequency": {
+        "unified|scale=1.25|height=0|tau=0.5|radius=2": 91,
+        "unified|scale=1.25|height=0|tau=0.55|radius=2": 2,
+        "unified|scale=1.25|height=0|tau=0.55|radius=3": 1
+      },
+      "outer_count_replay": "PASS",
+      "fold_count": 94
+    },
+    "BoostingVRME/SAMMLV": {
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/sammlv_curves.pkl",
+      "input_sha256": "f0a6d98fd3b296b3f28c16073bfc948df7cf9468bb2f79c502e615acdc7c2d36",
+      "subjects": 29,
+      "videos": 79,
+      "outer_k_frequency": {
+        "6": 29
+      },
+      "inner_k_frequency": {
+        "6": 812
+      },
+      "selected_configuration_frequency": {
+        "unified|scale=1.25|height=0|tau=0.65|radius=1": 3,
+        "unified|scale=1|height=0|tau=0.65|radius=1": 23,
+        "unified|scale=1|height=0|tau=0.6|radius=1": 1,
+        "unified|scale=1.5|height=0|tau=0.6|radius=1": 2
+      },
+      "outer_count_replay": "PASS",
+      "fold_count": 29
+    },
+    "BoostingVRME/CAS(ME)3": {
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/casme_3_curves.pkl",
+      "input_sha256": "8b653891e2162bf7b9506846c5dce002acdef448464d1b7f0dc516aecaeebb07",
+      "subjects": 94,
+      "videos": 462,
+      "outer_k_frequency": {
+        "11": 93,
+        "10": 1
+      },
+      "inner_k_frequency": {
+        "11": 8480,
+        "10": 262
+      },
+      "selected_configuration_frequency": {
+        "unified|scale=0.75|height=0|tau=0.5|radius=1": 94
+      },
+      "outer_count_replay": "PASS",
+      "fold_count": 94
+    }
+  },
+  "gate": "EXP2D_NO_CLEAR_ADVANTAGE",
+  "summary": {
+    "mean_delta_vs_baseline": 0.002848320166156215,
+    "mean_delta_vs_exp2c": -0.0012158543954065987,
+    "cas_preserved": true,
+    "boosting_sammlv_repaired": false,
+    "better_than_exp2c_overall": "INCONCLUSIVE"
+  }
+}

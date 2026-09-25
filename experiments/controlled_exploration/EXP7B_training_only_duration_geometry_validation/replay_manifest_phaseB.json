@@ -1,0 +1,8 @@
+{
+  "experiment": "EXP-7B Phase B",
+  "alpha_source_sha256": "a62300852990301f5d3b846ce93b34fa03001bac54f54c745e440b499b65d3b4",
+  "script_sha256": "243907b110a62ac709e9e3c939a0e9bcc24b3b6506b0ded3cc7df06b363583f7",
+  "canonical_modified": false,
+  "phase_A_reestimated": false,
+  "recognition_or_STRS": "not run"
+}

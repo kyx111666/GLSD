@@ -1,0 +1,179 @@
+{
+  "experiment": "GLSD controlled exploration EXP-4A",
+  "name": "Cross-Scale Alignment Tolerance Search",
+  "parent": "canonical GLSD-v1",
+  "only_change": "alignment tolerance coefficient gamma",
+  "formula": "delta=max(1, round(gamma*k))",
+  "gamma_candidates": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "baseline_gamma": 0.5,
+  "reference_scales": [
+    1.0,
+    1.5,
+    2.0
+  ],
+  "local_radii": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "thresholds": [
+    0.05,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.75
+  ],
+  "configuration_budget": 270,
+  "fixed_gamma_budget": 90,
+  "aggregation": "median",
+  "missing_scale": 0,
+  "fusion": "S=(G+L)/2",
+  "outer": "LOSO",
+  "inner": "LOSO excluding outer and inner validation subject",
+  "selection": "pooled inner F1; ties higher precision, fewer FP, fixed grid order",
+  "bootstrap": {
+    "unit": "subject",
+    "paired": true,
+    "resamples": 10000,
+    "seed": 100
+  },
+  "fp_explosion_rule": "delta FP > 10 and selected FP > 1.10 * canonical FP",
+  "alignment_audit": {
+    "nonreference": "distinct physical smoothing widths excluding the reference width",
+    "matched_missing_unit": "reference candidate x nonreference physical width",
+    "collision_count": "number of nonreference peaks assigned to more than one reference candidate",
+    "reuse_count": "assignments beyond the first to a reused nonreference peak"
+  },
+  "baseline_replay": "PASS",
+  "baseline_preflight": {
+    "ME-TST/SAMMLV": {
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/sammlv_strategy1_outputs.pkl",
+      "input_sha256": "3b2264bd527bf144dfe10e03528ac5e637fc30e10a66d8d9575648754b298569",
+      "subjects": 29,
+      "videos": 79,
+      "configuration_budget": 90,
+      "selected_configuration_replay": "PASS",
+      "inner_f1_replay": "PASS",
+      "outer_count_replay": "PASS",
+      "independent_prediction_replay": "PASS"
+    },
+    "ME-TST/CAS(ME)3": {
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/casme3_strategy1_outputs.pkl",
+      "input_sha256": "9bdcbb3fc79a3f2a4bf6729b826b5490d8a91aed913b4120c19d68cceec67bda",
+      "subjects": 94,
+      "videos": 462,
+      "configuration_budget": 90,
+      "selected_configuration_replay": "PASS",
+      "inner_f1_replay": "PASS",
+      "outer_count_replay": "PASS",
+      "independent_prediction_replay": "PASS"
+    },
+    "BoostingVRME/SAMMLV": {
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/sammlv_curves.pkl",
+      "input_sha256": "f0a6d98fd3b296b3f28c16073bfc948df7cf9468bb2f79c502e615acdc7c2d36",
+      "subjects": 29,
+      "videos": 79,
+      "configuration_budget": 90,
+      "selected_configuration_replay": "PASS",
+      "inner_f1_replay": "PASS",
+      "outer_count_replay": "PASS",
+      "independent_prediction_replay": "PASS"
+    },
+    "BoostingVRME/CAS(ME)3": {
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/casme_3_curves.pkl",
+      "input_sha256": "8b653891e2162bf7b9506846c5dce002acdef448464d1b7f0dc516aecaeebb07",
+      "subjects": 94,
+      "videos": 462,
+      "configuration_budget": 90,
+      "selected_configuration_replay": "PASS",
+      "inner_f1_replay": "PASS",
+      "outer_count_replay": "PASS",
+      "independent_prediction_replay": "PASS"
+    }
+  },
+  "canonical_glsd_modified": false,
+  "continue_finer_gamma_search": false,
+  "gate": "EXP4A_FAILED",
+  "recommendation": "B. Retain canonical GLSD-v1",
+  "gamma_behavior": "GLOBAL",
+  "source_sha256": {
+    "run_exp4a.py": "28ef5cb0313460c528e94df786b90a98e359ed24fcbcd2d3fcd8a1094886093d",
+    "unified_persistence.py": "56c531b3d63649c5173ffb7aa647fac6843a6f075db23b5f175f66fda1513723",
+    "equiscale_fair_validation.py": "c04c98aa3ba887459e03482886c183a76002341d8ad2656d49d08d9f2b8c206c"
+  },
+  "audits": {
+    "ME-TST/SAMMLV": {
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/sammlv_strategy1_outputs.pkl",
+      "input_sha256": "3b2264bd527bf144dfe10e03528ac5e637fc30e10a66d8d9575648754b298569",
+      "subjects": 29,
+      "videos": 79,
+      "baseline_fold_replay": "PASS",
+      "outer_count_replay": "PASS",
+      "outer_k_frequency": {
+        "5": 29
+      },
+      "inner_k_frequency": {
+        "5": 812
+      }
+    },
+    "ME-TST/CAS(ME)3": {
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/casme3_strategy1_outputs.pkl",
+      "input_sha256": "9bdcbb3fc79a3f2a4bf6729b826b5490d8a91aed913b4120c19d68cceec67bda",
+      "subjects": 94,
+      "videos": 462,
+      "baseline_fold_replay": "PASS",
+      "outer_count_replay": "PASS",
+      "outer_k_frequency": {
+        "17": 91,
+        "16": 2,
+        "15": 1
+      },
+      "inner_k_frequency": {
+        "17": 8140,
+        "16": 388,
+        "15": 180,
+        "14": 6,
+        "18": 28
+      }
+    },
+    "BoostingVRME/SAMMLV": {
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/sammlv_curves.pkl",
+      "input_sha256": "f0a6d98fd3b296b3f28c16073bfc948df7cf9468bb2f79c502e615acdc7c2d36",
+      "subjects": 29,
+      "videos": 79,
+      "baseline_fold_replay": "PASS",
+      "outer_count_replay": "PASS",
+      "outer_k_frequency": {
+        "6": 29
+      },
+      "inner_k_frequency": {
+        "6": 812
+      }
+    },
+    "BoostingVRME/CAS(ME)3": {
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/casme_3_curves.pkl",
+      "input_sha256": "8b653891e2162bf7b9506846c5dce002acdef448464d1b7f0dc516aecaeebb07",
+      "subjects": 94,
+      "videos": 462,
+      "baseline_fold_replay": "PASS",
+      "outer_count_replay": "PASS",
+      "outer_k_frequency": {
+        "11": 93,
+        "10": 1
+      },
+      "inner_k_frequency": {
+        "11": 8480,
+        "10": 262
+      }
+    }
+  }
+}

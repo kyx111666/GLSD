@@ -1,0 +1,16 @@
+{
+  "experiment": "EXP-7B Phase A",
+  "setting": "ME-TST+/CAS(ME)3",
+  "phase": "calibration-only",
+  "interval_semantics": "discrete closed: L=end-start+1",
+  "alpha": "per-training-subject median of L_G/L_E, then median across valid training subjects, clipped to [0.5, 1.5]",
+  "outer_test_GT_in_alpha": false,
+  "forbidden": [
+    "duration application",
+    "new prediction",
+    "formal F1",
+    "GLSD modification",
+    "Boosting",
+    "secondary replication"
+  ]
+}

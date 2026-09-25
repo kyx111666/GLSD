@@ -1,0 +1,11 @@
+{
+  "experiment": "EXP-7D",
+  "script_sha256": "91da12a761e67b4c5ccbd20600ccbdd7739bf0fb2bbf4ef95fd6f4f0a8811f5f",
+  "canonical_modified": false,
+  "EXP7B_modified": false,
+  "primary_context_sha256": "3095b047862ffbb2d60c6bf359b572212284eaa57071a587a6d8b1aecddbb0c4",
+  "frozen_helper_sha256": {
+    "phaseA_alpha_for_outer": "3eca17bd6c2d7c02beddb32dc2fa2e1e9b3987052b073c6ddbc1e53d11764ada",
+    "phaseB_adapter_matching_bootstrap": "243907b110a62ac709e9e3c939a0e9bcc24b3b6506b0ded3cc7df06b363583f7"
+  }
+}

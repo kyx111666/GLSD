@@ -1,0 +1,29 @@
+experiment: smoke40
+backbone: ME-TST
+dataset: SAMMLV
+decoder: GLSD
+
+tp_count: 20
+fp_count: 20
+
+candidate_composition:
+  remote_tp: 11
+  local_tp: 9
+  local_fp: 20
+
+frame_layout:
+  before: 3
+  candidate: 3
+  after: 3
+  roles: [B1, B2, B3, C1, C2, C3, A1, A2, A3]
+  frame_skip: 7
+  temporal_coordinates: zero_based_inclusive
+  physical_filename_index: one_based
+
+seed: 100
+verifier_mode: veto_only
+allowed_outputs: [keep, reject]
+trainable_parameters: 0
+label_access_during_inference: false
+checkpoint: Qwen/Qwen3-VL-8B-Instruct
+

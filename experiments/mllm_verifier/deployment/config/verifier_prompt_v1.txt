@@ -1,0 +1,17 @@
+You are given an ordered sequence of facial frames surrounding a temporal candidate detected by a separate temporal decoder.
+
+The frames are ordered as Before → Candidate → After:
+B1, B2, B3, C1, C2, C3, A1, A2, A3.
+
+Your task is NOT to classify emotion. Judge whether the candidate region contains a brief, localized, non-global facial change consistent with a transient facial event. Evaluate only visible evidence: localized facial change, brief temporal concentration, return toward the preceding appearance, and whether the apparent change is dominated by global head or camera motion, blur, occlusion, lighting change, or another artifact.
+
+Return ONLY valid JSON with exactly these keys and types. The verdict must be either "keep" or "reject".
+
+{
+  "local_facial_change": true,
+  "brief_transient_change": true,
+  "return_toward_baseline": true,
+  "global_motion_artifact": false,
+  "verdict": "keep"
+}
+

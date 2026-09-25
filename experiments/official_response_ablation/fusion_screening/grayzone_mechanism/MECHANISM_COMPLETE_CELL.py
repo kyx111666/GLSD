@@ -1,0 +1,26 @@
+# 接在刚才完成 Gray 实验的原 ME-TST Colab 末尾；只上传诊断包。
+# 默认两数据集顺序执行；不要重新运行旧搜索单元格。
+MECHANISM_SETTINGS = ['sammlv', 'casme3']
+MECHANISM_RESUME_ROOT = None  # 中断恢复时填本轮日志中的 diagnostic_<UTC> 根目录
+MECHANISM_PREVIOUS = {
+    'sammlv': '/content/drive/MyDrive/GLSD_GRAYZONE_SUPPORT/full_sammlv_20260922T125802_413296Z',
+    'casme3': '/content/drive/MyDrive/GLSD_GRAYZONE_SUPPORT/full_casme3_20260922T134807_975740Z',
+}
+
+from google.colab import files
+from pathlib import Path
+import hashlib, io, json, tempfile, zipfile
+uploaded = files.upload()  # 只选 metst_mechanism_diagnostic_v1.zip
+assert len(uploaded) == 1, '请只上传本轮机制诊断包'
+blob = next(iter(uploaded.values()))
+assert hashlib.sha256(blob).hexdigest() == 'b22c8508ddfcb80398144add0ef6eb4c2f8e567fffbc23f0046dd4c038703a83', 'ZIP 与 cell 不对应'
+expected = {'official_response_component_ablation.py': 'e439bc088dcf833bfe1cc2fdc2cc9ecc27d5588e30f7c12cb1215383427193f4', 'run_generalized_mean_screening.py': 'b4d4e97f4f9ce18c57998eac372294ac27743effb6090134fc6190befa42cb86', 'run_p8_phase2.py': 'bfd7d6bed67f00b20ef801180763a864b0134e0ec4e1035ffa943c2aab2be442', 'run_p8_one_to_one.py': '509312a1d1afb3d9dc04ebc134609fb915abb4e301eb46a6f651223e522c1795', 'run_p8_threshold_control.py': 'fb1c446f01200c390fb7b5c16961e60bf28af811e41ba39aba148bdd5f698b34', 'colab_p8_entry.py': '30d184886a80c25f9360fd4f79245371a87530ba9a7bc04c7c7c6ea8994f322c', 'test_p8_matching.py': '1ec9e0cebda3d8945b768288ac5d21fc42dc4670aae3d6cbe526e2c259ced203', 'test_p8_phase2.py': '5b1e7806500667c5dbe4a34b0d7a6d05701f2f15a09efbd1cd46f1bf612f90da', 'test_p8_threshold_control.py': 'b6d0b945436683cf6f4335669ceb3e8fc9e32152bc4c686d06a4818e7547d447', 'one_to_one_evaluator.py': '0b61a8eac4be63b9785cba4dc1ac5364575f9becd3447258079e2a11f9831008', 'run_grayzone.py': '9040d7a20b475ecf2527494c6ce9758fea435bf5babadd213a40ec3820e39610', 'test_grayzone.py': '3c5855b013651b0f927d5ce682891c812d5f9f19ccea37d2c214aa6052c5bc6b', 'colab_grayzone_entry.py': '15132b2ad9965d77ed6318acac5899e4a86c32c46ff449c2d7631dccda6f30e5', 'run_colab_grayzone.py': 'df65b0cca7fdbb57e6d71f2c09ced345fa541dcf0462d4353eb4d6d949e27945', 'mechanism_features.py': 'bbb9e14ab411c75f3970b470d2204e651eda285d265f9cc605987c94f92238c1', 'analyze_export.py': '6c74674173ca627fe865b66c0c8fff82b0b83d618fdc56701ed5fa5da6f579da', 'run_mechanism.py': 'b9aa37400aecbee8d45312340b0214673580d48b3d41ecf3333d70343c190b37', 'colab_mechanism_entry.py': 'a6c2b08878e2b5d3288d6bd95547edb04b73579f25618f971f77cbcc48ae960b', 'run_colab_mechanism.py': '31324152161cb03e18fbd745dc1b1d52aa376f4e8642a7d3f0fc2a7bfdcba695', 'test_mechanism.py': 'f6b58b58a6d1df4f815b3d5c9e5662f2e2fcc51ce3f107a5d80f4b5266766920', 'sealed_core_test_fixture.py': '6f500e5af179a28e8a4f5e49a926004c1a60887a3cc27b1e9df2b9d61c94ca3d', 'README_MECHANISM_CN.md': 'ff93c4aa08d44eb45a6339723fabe189dc8e580378e81b6bf4d5e433b7a1c77d'}
+MECHANISM_PACKAGE_DIR = Path(tempfile.mkdtemp(prefix='glsd_mechanism_', dir='/content'))
+with zipfile.ZipFile(io.BytesIO(blob)) as z:
+    assert len(z.namelist()) == len(expected)+1 and set(z.namelist()) == set(expected)|{'package_manifest.json'}
+    assert json.loads(z.read('package_manifest.json')) == expected
+    for name, digest in expected.items():
+        assert hashlib.sha256(z.read(name)).hexdigest() == digest, name
+    z.extractall(MECHANISM_PACKAGE_DIR)
+entry = MECHANISM_PACKAGE_DIR / 'run_colab_mechanism.py'
+exec(compile(entry.read_text(encoding='utf8'), str(entry), 'exec'))

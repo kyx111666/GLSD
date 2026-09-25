@@ -1,0 +1,52 @@
+{
+  "snapshot_id": "GLSD-v1-baseline-2026-09-17",
+  "status": "FINAL_LOCKED",
+  "method": {
+    "name": "GLSD-v1",
+    "score_formula": "S(c)=(G(c)+L(c))/2",
+    "local_aggregation": "median",
+    "scales": [1.0, 1.5, 2.0],
+    "reference_scales": [1.0, 1.5, 2.0],
+    "local_radii": [1.0, 2.0, 3.0],
+    "height_weight": 0.0,
+    "thresholds": [0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.55, 0.6, 0.65, 0.75],
+    "pure_gl_config_count": 90,
+    "threshold_search": "original locked paper configuration"
+  },
+  "data": [
+    {"backbone": "metst", "dataset": "sammlv"},
+    {"backbone": "metst", "dataset": "casme3"},
+    {"backbone": "boostingvrme", "dataset": "sammlv"},
+    {"backbone": "boostingvrme", "dataset": "casme3"}
+  ],
+  "evaluation": {
+    "outer": "LOSO",
+    "inner": "configuration selection excluding outer subject and held inner-validation subject",
+    "selection_tiebreak": ["higher F1", "higher precision", "fewer FP", "lower config id"],
+    "bootstrap_unit": "subject",
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 100,
+    "matching_iou_threshold": 0.5
+  },
+  "output_contract": {
+    "format_reference": "results/",
+    "required_files": [
+      "combined_report.json",
+      "main_results.csv",
+      "ablation.csv",
+      "bootstrap.csv",
+      "threshold_robustness.csv",
+      "mechanism_summary.csv",
+      "candidate_analysis.csv",
+      "complexity.csv",
+      "skill_portability.json",
+      "prediction_regression.json",
+      "run_summary.json"
+    ],
+    "rule": "Every exploration must use a new directory, must not overwrite this snapshot, and must emit the same file set and schemas as this baseline."
+  },
+  "execution": {
+    "baseline_experiment_rerun": false,
+    "note": "Snapshot copied from already-completed FINAL/LOCKED artifacts; no experiment was run while creating it."
+  }
+}

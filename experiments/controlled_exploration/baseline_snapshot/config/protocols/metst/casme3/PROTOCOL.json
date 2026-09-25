@@ -1,0 +1,3649 @@
+{
+  "protocol": {
+    "version": "unified_persistence_final",
+    "score": "w*H + (1-w)*(G+L)/2",
+    "H": "max(0, (peak-mean)/(max-mean)) on reference curve; continuous evidence, no height gate",
+    "G": "global prominence / reference smoothed curve range",
+    "L": "median of aligned local prominences / respective smoothed ranges; missing scale is zero",
+    "scales": [
+      1.0,
+      1.5,
+      2.0
+    ],
+    "reference_scales": [
+      1.0,
+      1.5,
+      2.0
+    ],
+    "local_radius_multipliers": [
+      1.0,
+      2.0,
+      3.0
+    ],
+    "alignment_tolerance": "max(1, round(0.5*k))",
+    "peak_distance": "k",
+    "scale_deduplication": "one vote per distinct integer smoothing width",
+    "constant_curve_policy": "no candidates; avoid artificial zero-padding plateaus",
+    "routing": false,
+    "height_candidate_gate": false,
+    "global_peak_snapping": false,
+    "height_weights": [
+      0.0,
+      0.25,
+      0.5,
+      0.75
+    ],
+    "thresholds": [
+      0.05,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.75
+    ],
+    "configurations": [
+      {
+        "family": "native",
+        "reference": 2.0,
+        "height_weight": 1.0,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.25,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.5,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.0,
+        "height_weight": 0.75,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "height",
+        "reference": 1.0,
+        "height_weight": 1.0,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.0,
+        "height_weight": 1.0,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.0,
+        "height_weight": 1.0,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.0,
+        "height_weight": 1.0,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.0,
+        "height_weight": 1.0,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.0,
+        "height_weight": 1.0,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.0,
+        "height_weight": 1.0,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.0,
+        "height_weight": 1.0,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.0,
+        "height_weight": 1.0,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.0,
+        "height_weight": 1.0,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.0,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.25,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.5,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 1.5,
+        "height_weight": 0.75,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "height",
+        "reference": 1.5,
+        "height_weight": 1.0,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.5,
+        "height_weight": 1.0,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.5,
+        "height_weight": 1.0,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.5,
+        "height_weight": 1.0,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.5,
+        "height_weight": 1.0,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.5,
+        "height_weight": 1.0,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.5,
+        "height_weight": 1.0,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.5,
+        "height_weight": 1.0,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.5,
+        "height_weight": 1.0,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 1.5,
+        "height_weight": 1.0,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 1.5,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 2.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 2.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.25,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.5,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "unified",
+        "reference": 2.0,
+        "height_weight": 0.75,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 3.0
+      },
+      {
+        "family": "local",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 3.0
+      },
+      {
+        "family": "height",
+        "reference": 2.0,
+        "height_weight": 1.0,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 2.0,
+        "height_weight": 1.0,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 2.0,
+        "height_weight": 1.0,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 2.0,
+        "height_weight": 1.0,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 2.0,
+        "height_weight": 1.0,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 2.0,
+        "height_weight": 1.0,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 2.0,
+        "height_weight": 1.0,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 2.0,
+        "height_weight": 1.0,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 2.0,
+        "height_weight": 1.0,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "height",
+        "reference": 2.0,
+        "height_weight": 1.0,
+        "threshold": 0.75,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.05,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.1,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.2,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.3,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.4,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.5,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.55,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.6,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.65,
+        "radius": 1.0
+      },
+      {
+        "family": "global",
+        "reference": 2.0,
+        "height_weight": 0.0,
+        "threshold": 0.75,
+        "radius": 1.0
+      }
+    ],
+    "primary_family": "unified",
+    "selection": "aggregate inner-subject raw F1; ties precision, fewer FP, then grid order",
+    "outer_k": "training subjects only",
+    "inner_k": "exclude outer test and inner validation subjects",
+    "intervals": "ME-TST fixed; BoostingVRME native expansion/NMS primary, fixed secondary",
+    "limitations": [
+      "Exploratory design using previously examined datasets.",
+      "Frozen backbone OOF caches; not fully nested backbone retraining.",
+      "Raw spotting only; existing BoostingVRME reference-kernel cache.",
+      "Paired bootstrap conditions on selected configurations and frozen curves."
+    ]
+  },
+  "backbone": "metst",
+  "dataset": "casme3",
+  "input_path": "D:\\workspace\\ME-TST-main\\ME-TST-main\\results\\paper_aligned_strategy_cache\\casme3_strategy1_outputs.pkl",
+  "input_sha256": "9bdcbb3fc79a3f2a4bf6729b826b5490d8a91aed913b4120c19d68cceec67bda",
+  "source_sha256": {
+    "unified_persistence.py": "56c531b3d63649c5173ffb7aa647fac6843a6f075db23b5f175f66fda1513723",
+    "equiscale_fair_validation.py": "c04c98aa3ba887459e03482886c183a76002341d8ad2656d49d08d9f2b8c206c",
+    "tune_equiscale.py": "bc3aa386570fa3de8d9d56c0fd2a57e9c12d7b594765c7095fbbb40ee205263d"
+  },
+  "signature": "998e59e46ca2324df269a1e6dbc262e35094e41c46058d8bfb20cb8f3fc75129"
+}

@@ -1,0 +1,180 @@
+{
+  "experiment": "GLSD controlled exploration EXP-2B",
+  "interpretation": "configuration-space expansion; not a new model",
+  "only_change": "local radius set and searched radius choices",
+  "baseline_radii": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "expanded_radii": [
+    1.0,
+    2.0,
+    3.0,
+    4.0,
+    5.0
+  ],
+  "baseline_configuration_budget": 90,
+  "expanded_configuration_budget": 150,
+  "scales": [
+    1.0,
+    1.5,
+    2.0
+  ],
+  "reference_scales": [
+    1.0,
+    1.5,
+    2.0
+  ],
+  "local_aggregation": "median (unchanged)",
+  "global_evidence": "unchanged",
+  "fusion": "S(c)=(G(c)+L(c))/2 (unchanged)",
+  "thresholds": [
+    0.05,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.75
+  ],
+  "outer": "LOSO",
+  "inner": "LOSO excluding outer test and inner validation subjects",
+  "selection_tiebreak": [
+    "higher F1",
+    "higher precision",
+    "fewer FP",
+    "lower config order"
+  ],
+  "primary_intervals": {
+    "metst": "fixed",
+    "boostingvrme": "native"
+  },
+  "main_glsd_modified": false,
+  "bootstrap_resamples": 10000,
+  "seed": 100,
+  "source_sha256": {
+    "run_exp2b.py": "a7e4bd7b00288e0104de383e77e0ea647df3fbe22158ee01d70ab82d8894ea4b",
+    "unified_persistence.py": "56c531b3d63649c5173ffb7aa647fac6843a6f075db23b5f175f66fda1513723",
+    "equiscale_fair_validation.py": "c04c98aa3ba887459e03482886c183a76002341d8ad2656d49d08d9f2b8c206c"
+  },
+  "audits": {
+    "ME-TST/SAMMLV": {
+      "expanded_metrics": {
+        "TP": 45,
+        "FP": 126,
+        "FN": 114,
+        "precision": 0.2631578947368421,
+        "recall": 0.2830188679245283,
+        "F1": 0.2727272727272727
+      },
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/sammlv_strategy1_outputs.pkl",
+      "input_sha256": "3b2264bd527bf144dfe10e03528ac5e637fc30e10a66d8d9575648754b298569",
+      "subjects": 29,
+      "videos": 79,
+      "outer_k_frequency": {
+        "5": 29
+      },
+      "inner_k_frequency": {
+        "5": 812
+      },
+      "selected_configuration_frequency": {
+        "unified|scale=2|height=0|tau=0.65|radius=2": 25,
+        "unified|scale=2|height=0|tau=0.75|radius=4": 4
+      },
+      "outer_count_replay": "PASS"
+    },
+    "ME-TST/CAS(ME)3": {
+      "expanded_metrics": {
+        "TP": 92,
+        "FP": 1073,
+        "FN": 766,
+        "precision": 0.07896995708154507,
+        "recall": 0.10722610722610723,
+        "F1": 0.09095402867029165
+      },
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/casme3_strategy1_outputs.pkl",
+      "input_sha256": "9bdcbb3fc79a3f2a4bf6729b826b5490d8a91aed913b4120c19d68cceec67bda",
+      "subjects": 94,
+      "videos": 462,
+      "outer_k_frequency": {
+        "17": 91,
+        "16": 2,
+        "15": 1
+      },
+      "inner_k_frequency": {
+        "17": 8140,
+        "16": 388,
+        "15": 180,
+        "14": 6,
+        "18": 28
+      },
+      "selected_configuration_frequency": {
+        "unified|scale=1.5|height=0|tau=0.4|radius=2": 85,
+        "unified|scale=1|height=0|tau=0.55|radius=3": 1,
+        "unified|scale=1.5|height=0|tau=0.55|radius=5": 1,
+        "unified|scale=1|height=0|tau=0.55|radius=2": 1,
+        "unified|scale=1.5|height=0|tau=0.3|radius=1": 2,
+        "unified|scale=1.5|height=0|tau=0.4|radius=4": 4
+      },
+      "outer_count_replay": "PASS"
+    },
+    "BoostingVRME/SAMMLV": {
+      "expanded_metrics": {
+        "TP": 42,
+        "FP": 95,
+        "FN": 117,
+        "precision": 0.30656934306569344,
+        "recall": 0.2641509433962264,
+        "F1": 0.28378378378378377
+      },
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/sammlv_curves.pkl",
+      "input_sha256": "f0a6d98fd3b296b3f28c16073bfc948df7cf9468bb2f79c502e615acdc7c2d36",
+      "subjects": 29,
+      "videos": 79,
+      "outer_k_frequency": {
+        "6": 29
+      },
+      "inner_k_frequency": {
+        "6": 812
+      },
+      "selected_configuration_frequency": {
+        "unified|scale=1|height=0|tau=0.6|radius=1": 26,
+        "unified|scale=1|height=0|tau=0.65|radius=1": 1,
+        "unified|scale=1.5|height=0|tau=0.6|radius=1": 2
+      },
+      "outer_count_replay": "PASS"
+    },
+    "BoostingVRME/CAS(ME)3": {
+      "expanded_metrics": {
+        "TP": 120,
+        "FP": 1148,
+        "FN": 738,
+        "precision": 0.0946372239747634,
+        "recall": 0.13986013986013987,
+        "F1": 0.11288805268109126
+      },
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/casme_3_curves.pkl",
+      "input_sha256": "8b653891e2162bf7b9506846c5dce002acdef448464d1b7f0dc516aecaeebb07",
+      "subjects": 94,
+      "videos": 462,
+      "outer_k_frequency": {
+        "11": 93,
+        "10": 1
+      },
+      "inner_k_frequency": {
+        "11": 8480,
+        "10": 262
+      },
+      "selected_configuration_frequency": {
+        "unified|scale=1|height=0|tau=0.3|radius=1": 87,
+        "unified|scale=1.5|height=0|tau=0.3|radius=1": 6,
+        "unified|scale=1|height=0|tau=0.5|radius=3": 1
+      },
+      "outer_count_replay": "PASS"
+    }
+  }
+}

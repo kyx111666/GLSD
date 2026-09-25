@@ -1,0 +1,97 @@
+{
+  "experiment": "EXP-4B-R",
+  "stage_1": "Peak-Reuse FP Enrichment Audit",
+  "parent": "canonical GLSD-v1",
+  "configuration_budget": 90,
+  "reference_scales": [
+    1.0,
+    1.5,
+    2.0
+  ],
+  "local_radii": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "thresholds": [
+    0.05,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.75
+  ],
+  "gamma": 0.5,
+  "selection": "canonical pooled inner F1; ties precision, fewer FP, fixed grid order",
+  "canonical_peak_selection": "minimum temporal distance; ties maximum normalized bilateral local contrast",
+  "missing_scale": 0,
+  "local_aggregation": "median",
+  "score": "S=(G+L)/2",
+  "bootstrap": {
+    "unit": "outer subject",
+    "paired": true,
+    "resamples": 10000,
+    "seed": 100
+  },
+  "canonical_replay": "PASS",
+  "peak_reuse_confirmed": true,
+  "gate_r": "FAIL",
+  "gate_r_qualifying_settings": [],
+  "both_casme3_opposite_direction": false,
+  "stage_2_executed": false,
+  "canonical_glsd_modified": false,
+  "groups": {
+    "ME-TST/SAMMLV": {
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/sammlv_strategy1_outputs.pkl",
+      "input_sha256": "3b2264bd527bf144dfe10e03528ac5e637fc30e10a66d8d9575648754b298569",
+      "subjects": 29,
+      "videos": 79,
+      "configuration_budget": 90,
+      "selected_configuration_replay": "PASS",
+      "prediction_list_replay": "PASS",
+      "tp_fp_fn_replay": "PASS",
+      "prediction_candidate_linkages": 174
+    },
+    "ME-TST/CAS(ME)3": {
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/casme3_strategy1_outputs.pkl",
+      "input_sha256": "9bdcbb3fc79a3f2a4bf6729b826b5490d8a91aed913b4120c19d68cceec67bda",
+      "subjects": 94,
+      "videos": 462,
+      "configuration_budget": 90,
+      "selected_configuration_replay": "PASS",
+      "prediction_list_replay": "PASS",
+      "tp_fp_fn_replay": "PASS",
+      "prediction_candidate_linkages": 1181
+    },
+    "BoostingVRME/SAMMLV": {
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/sammlv_curves.pkl",
+      "input_sha256": "f0a6d98fd3b296b3f28c16073bfc948df7cf9468bb2f79c502e615acdc7c2d36",
+      "subjects": 29,
+      "videos": 79,
+      "configuration_budget": 90,
+      "selected_configuration_replay": "PASS",
+      "prediction_list_replay": "PASS",
+      "tp_fp_fn_replay": "PASS",
+      "prediction_candidate_linkages": 137
+    },
+    "BoostingVRME/CAS(ME)3": {
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/casme_3_curves.pkl",
+      "input_sha256": "8b653891e2162bf7b9506846c5dce002acdef448464d1b7f0dc516aecaeebb07",
+      "subjects": 94,
+      "videos": 462,
+      "configuration_budget": 90,
+      "selected_configuration_replay": "PASS",
+      "prediction_list_replay": "PASS",
+      "tp_fp_fn_replay": "PASS",
+      "prediction_candidate_linkages": 1268
+    }
+  },
+  "source_sha256": {
+    "unified_persistence.py": "56c531b3d63649c5173ffb7aa647fac6843a6f075db23b5f175f66fda1513723",
+    "equiscale_fair_validation.py": "c04c98aa3ba887459e03482886c183a76002341d8ad2656d49d08d9f2b8c206c"
+  }
+}

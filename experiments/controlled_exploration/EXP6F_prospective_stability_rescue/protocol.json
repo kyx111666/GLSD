@@ -1,0 +1,22 @@
+{
+  "experiment": "EXP-6F Training-Only Prominence-Stability Rescue Validation",
+  "status": "POST_HOC_DEVELOPED_NESTED_EVALUATED_VARIANT",
+  "feature": "Q_P ONLY",
+  "eta_quantiles": [
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    0.9
+  ],
+  "eta_OFF_allowed": true,
+  "trainable_parameters": 0,
+  "outer_test_used_for_tuning": false,
+  "canonical_GLSD_modified": false,
+  "sources": {
+    "<workspace-root>/controlled_exploration/EXP2A_scale/run_exp2a.py": "913d8100454975a492582447d20af81f112334764282b8909835c5cdf4b3d8c4",
+    "<workspace-root>/controlled_exploration/EXP2C_reference_evidence_decoupling/run_exp2c.py": "1f32a8b0abb8c23de809dcf47eb97a8041408e85617cfe81868c7862f31223db",
+    "<workspace-root>/controlled_exploration/EXP6E_prominence_stability_rule_diagnostic/run_exp6e.py": "98c74e00b97d62e36a55eb66535137838017ff6c1aa8fc79040fd6b5add283de",
+    "<workspace-root>/controlled_exploration/EXP6F_prospective_stability_rescue/run_exp6f.py": "7d90ca773db2d137fc9c533f011cad183497a2e8d80e2ae4d1ec82c35c32d1ec"
+  }
+}

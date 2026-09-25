@@ -1,0 +1,16 @@
+{
+  "experiment": "EXP-6A End-to-End FN/Event Bottleneck Localization",
+  "scope": "read-only replay of saved outer selections and frozen curves",
+  "P0": "all actual reference candidates after original adapter geometry, before threshold/conflict",
+  "P1": "P0 candidates with S >= archived selected tau",
+  "P2": "P1 after original sequential conflict rule/output order",
+  "formal_evaluator": "archived greedy best-GT one-to-one evaluator",
+  "oracle": "maximum bipartite coverage diagnostic only",
+  "forbidden_actions": [
+    "selection",
+    "training",
+    "configuration change",
+    "evaluator modification",
+    "optimization experiment"
+  ]
+}

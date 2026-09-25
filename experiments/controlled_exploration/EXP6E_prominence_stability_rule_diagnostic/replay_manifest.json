@@ -1,0 +1,14 @@
+{
+  "source_sha256": {
+    "EXP6D": "32ad84f9f0c034cdbd62c93df3705e23e4aec4d77ce24e1a963b611ac812ee17",
+    "EXP6C": "b83b8ee9379bb8b0397e5d75ea1711a84cddfdbfe9bca8bbfb2c8d5aa95f7bc8",
+    "EXP6E": "98c74e00b97d62e36a55eb66535137838017ff6c1aa8fc79040fd6b5add283de"
+  },
+  "parent_replay": "PASS",
+  "shapley_identity": "PASS",
+  "new_method_executed": false,
+  "threshold_searched": false,
+  "formal_F1_changed": false,
+  "recognition_STRS_changed": false,
+  "canonical_GLSD_modified": false
+}

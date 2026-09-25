@@ -1,0 +1,93 @@
+{
+  "experiment": "EXP-7A",
+  "parent_artifacts": {
+    "EXP6A_ANALYSIS.md": "9bb2329ab7458dc4788ae1c2cc9b99d1dd4ad8ee2bd13e37d98a3d33cfb38185",
+    "fn_classification.csv": "f09b668a4f0948350e5f1d4aefaaa0a41d7026d4f5c79b4cbce45c65e0b29e35",
+    "A_candidate_geometry_detail.csv": "61f867d0fadacba2ca65a4c92d00111dfedaea6d0d1dc2e88aa9bd2cfeb1a55f",
+    "oracle_coverage.csv": "0b51bb315e4c7f22be34d6a908132926dc1a16fe886ed09dbbc4eee221d813d6",
+    "subject_bottleneck_summary.csv": "8f150d2ea820f824a7da0ca641e62d83a426b06b48a6cc8581be02e297e17ce1"
+  },
+  "source_sha256": {
+    "run_exp7a.py": "3c5f6c0d96794e97baf98f6ef9d709dd0f235390b41eb1568fefb1d47b5a4486",
+    "unified_persistence.py": "56c531b3d63649c5173ffb7aa647fac6843a6f075db23b5f175f66fda1513723",
+    "equiscale_fair_validation.py": "c04c98aa3ba887459e03482886c183a76002341d8ad2656d49d08d9f2b8c206c"
+  },
+  "replay": [
+    {
+      "setting": "ME-TST+/SAMMLV",
+      "backbone": "metst",
+      "dataset": "sammlv",
+      "frozen_input": "RethinkFuse_reproduction/caches/me_tst/sammlv_strategy1_outputs.pkl",
+      "frozen_input_sha256": "3b2264bd527bf144dfe10e03528ac5e637fc30e10a66d8d9575648754b298569",
+      "expected_TP": 48,
+      "expected_FP": 126,
+      "expected_FN": 111,
+      "replay_TP": 48,
+      "replay_FP": 126,
+      "replay_FN": 111,
+      "fresh_A": 48,
+      "fresh_B": 63,
+      "fresh_C": 0,
+      "fresh_D": 0,
+      "full_prediction_list_check": "PASS",
+      "replay_status": "PASS"
+    },
+    {
+      "setting": "ME-TST+/CAS(ME)3",
+      "backbone": "metst",
+      "dataset": "casme3",
+      "frozen_input": "RethinkFuse_reproduction/caches/me_tst/casme3_strategy1_outputs.pkl",
+      "frozen_input_sha256": "9bdcbb3fc79a3f2a4bf6729b826b5490d8a91aed913b4120c19d68cceec67bda",
+      "expected_TP": 96,
+      "expected_FP": 1085,
+      "expected_FN": 762,
+      "replay_TP": 96,
+      "replay_FP": 1085,
+      "replay_FN": 762,
+      "fresh_A": 486,
+      "fresh_B": 276,
+      "fresh_C": 0,
+      "fresh_D": 0,
+      "full_prediction_list_check": "PASS",
+      "replay_status": "PASS"
+    },
+    {
+      "setting": "BoostingVRME/SAMMLV",
+      "backbone": "boostingvrme",
+      "dataset": "sammlv",
+      "frozen_input": "historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/sammlv_curves.pkl",
+      "frozen_input_sha256": "f0a6d98fd3b296b3f28c16073bfc948df7cf9468bb2f79c502e615acdc7c2d36",
+      "expected_TP": 42,
+      "expected_FP": 95,
+      "expected_FN": 117,
+      "replay_TP": 42,
+      "replay_FP": 95,
+      "replay_FN": 117,
+      "fresh_A": 40,
+      "fresh_B": 77,
+      "fresh_C": 0,
+      "fresh_D": 0,
+      "full_prediction_list_check": "PASS",
+      "replay_status": "PASS"
+    },
+    {
+      "setting": "BoostingVRME/CAS(ME)3",
+      "backbone": "boostingvrme",
+      "dataset": "casme3",
+      "frozen_input": "historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/casme_3_curves.pkl",
+      "frozen_input_sha256": "8b653891e2162bf7b9506846c5dce002acdef448464d1b7f0dc516aecaeebb07",
+      "expected_TP": 120,
+      "expected_FP": 1148,
+      "expected_FN": 738,
+      "replay_TP": 120,
+      "replay_FP": 1148,
+      "replay_FN": 738,
+      "fresh_A": 386,
+      "fresh_B": 352,
+      "fresh_C": 0,
+      "fresh_D": 0,
+      "full_prediction_list_check": "PASS",
+      "replay_status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "experiment": "EXP-7A Event Geometry Failure Decomposition",
+  "diagnostic_only": true,
+  "parent": "EXP-6A",
+  "canonical_modified": false,
+  "new_method_executed": false,
+  "formal_prediction_changed": false,
+  "f1_changed": false,
+  "recognition_or_STRS_recomputed": false,
+  "oracle_semantics": "legal discrete closed intervals only; oracle intervals never become predictions",
+  "representative_candidate": "in-GT P0 candidate with highest formal IoU, then closest peak to GT center",
+  "bootstrap": {
+    "N": 10000,
+    "seed": 100,
+    "unit": "outer subject"
+  },
+  "forbidden_actions": [
+    "training",
+    "selection",
+    "new k",
+    "boundary search",
+    "prediction modification",
+    "F1 recomputation"
+  ]
+}

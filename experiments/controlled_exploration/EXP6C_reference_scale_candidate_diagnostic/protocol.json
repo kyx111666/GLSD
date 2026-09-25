@@ -1,0 +1,28 @@
+{
+  "experiment": "EXP-6C Reference-Scale Candidate Diagnostic",
+  "parent": "EXP-6B",
+  "primary": "BoostingVRME/SAMMLV",
+  "secondary": "BoostingVRME/CAS(ME)3",
+  "controls": [
+    "ME-TST+/SAMMLV",
+    "ME-TST+/CAS(ME)3"
+  ],
+  "evidence": "fixed E_7",
+  "score": "S=(G+L)/2",
+  "selection": "saved EXP-2A/EXP-2C foldwise rho/tau/reference only",
+  "candidate_matching": "GT-centric; best S then IoU then canonical temporal order",
+  "local_neighborhood": "GT closed interval only",
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 100,
+    "unit": "outer subject"
+  },
+  "forbidden_changes": [
+    "new method",
+    "new scale",
+    "new tau",
+    "new fusion",
+    "outer-test rule selection"
+  ],
+  "canonical_GLSD_modified": false
+}

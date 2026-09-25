@@ -1,0 +1,16 @@
+{
+  "experiment": "EXP-7C",
+  "setting": "BoostingVRME/CAS(ME)3",
+  "outer_LOSO": true,
+  "alpha": "subject-balanced per-fold Boosting-only estimator",
+  "same_as_EXP7B_rounding": true,
+  "adapter": "fixed-center same-parity on all P1 candidates before original Boosting conflict",
+  "forbidden": [
+    "ME alpha transfer",
+    "alpha search",
+    "center/boundary correction",
+    "rule change",
+    "Recognition",
+    "STRS"
+  ]
+}

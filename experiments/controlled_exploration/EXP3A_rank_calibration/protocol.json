@@ -1,0 +1,190 @@
+{
+  "experiment": "GLSD controlled exploration EXP-3A",
+  "name": "Rank-Calibrated Structural Evidence",
+  "direct_parent": "EXP-2C Reference-Scale / Evidence-Scale Decoupling",
+  "only_change": "per-video separate average mid-rank percentile calibration of G and L",
+  "formula": {
+    "rank": "R(x_i) = average 1-based rank with exact-score ties",
+    "percentile": "P(x_i) = (R(x_i)-0.5)/n",
+    "G_rank": "P(G)",
+    "L_rank": "P(L)",
+    "fusion": "S_rank=(G_rank+L_rank)/2",
+    "n_equals_1": "G_rank=L_rank=S_rank=0.5",
+    "n_equals_0": "empty candidate set; original empty-prediction behavior"
+  },
+  "leakage_control": "calibration uses only candidate scores from the current video/configuration context; no GT or cross-video statistic",
+  "reference_scale_candidates": [
+    0.75,
+    1.0,
+    1.25,
+    1.5,
+    1.75,
+    2.0,
+    2.5
+  ],
+  "evidence_scale_map": {
+    "0.75": [
+      0.75,
+      1.0,
+      1.25
+    ],
+    "1": [
+      0.75,
+      1.0,
+      1.25
+    ],
+    "1.25": [
+      1.0,
+      1.25,
+      1.5
+    ],
+    "1.5": [
+      1.25,
+      1.5,
+      1.75
+    ],
+    "1.75": [
+      1.5,
+      1.75,
+      2.0
+    ],
+    "2": [
+      1.5,
+      1.75,
+      2.0
+    ],
+    "2.5": [
+      1.75,
+      2.0,
+      2.5
+    ]
+  },
+  "local_aggregation": "median; missing scale is zero",
+  "local_radii": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "thresholds": [
+    0.05,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.75
+  ],
+  "configuration_budget": 210,
+  "configuration_budget_formula": "7 reference scales x 3 radii x 10 thresholds = 210",
+  "outer": "LOSO",
+  "inner": "LOSO excluding outer test and inner validation subjects",
+  "selection_tiebreak": [
+    "higher F1",
+    "higher precision",
+    "fewer FP",
+    "lower config order"
+  ],
+  "bootstrap": {
+    "unit": "subject",
+    "paired": true,
+    "resamples": 10000,
+    "seed": 100
+  },
+  "sanity_audit": {
+    "timing": "completed before nested LOSO evaluation",
+    "unit": "setting x reference scale x radius; each row contains all videos at their outer-fold k",
+    "unique_value_ratio": "mean per nonempty video of unique(score)/candidate_count",
+    "tie_rate": "mean per nonempty video of 1-unique(score)/candidate_count",
+    "spearman": "mean across nonconstant video score vectors; singleton/constant vectors excluded and counted"
+  },
+  "top_fraction_diagnostic_rule": {
+    "flag_if": "IQR <= 0.05 and at least 90% of nonempty-video fractions lie within 0.10 of the median",
+    "selection_effect": "none; diagnostic only"
+  },
+  "boostingvrme_sammlv_fp_not_obviously_inflated": "EXP-3A FP <= 1.05 * EXP-2C FP",
+  "gate": "EXP3A_FAILED",
+  "gate_checks": {
+    "no_significant_regression": false,
+    "at_least_three_noninferior": false,
+    "cas_gains_preserved": false,
+    "boostingvrme_sammlv_repaired": false,
+    "mean_f1_noninferior": false,
+    "global_parameter_free_formula": true
+  },
+  "canonical_glsd_modified": false,
+  "automatic_followup": false,
+  "parent_exact_replay": "PASS",
+  "candidate_ranking_preserved": true,
+  "potential_top_fraction_behavior": true,
+  "source_sha256": {
+    "run_exp3a.py": "6001d60e47f6fabb80d83af2ccfa0c6e2e3ccdeb3767bae4ddeba78df0e53008",
+    "run_exp2c.py": "1f32a8b0abb8c23de809dcf47eb97a8041408e85617cfe81868c7862f31223db",
+    "unified_persistence.py": "56c531b3d63649c5173ffb7aa647fac6843a6f075db23b5f175f66fda1513723",
+    "equiscale_fair_validation.py": "c04c98aa3ba887459e03482886c183a76002341d8ad2656d49d08d9f2b8c206c"
+  },
+  "audits": {
+    "ME-TST/SAMMLV": {
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/sammlv_strategy1_outputs.pkl",
+      "input_sha256": "3b2264bd527bf144dfe10e03528ac5e637fc30e10a66d8d9575648754b298569",
+      "videos": 79,
+      "outer_k_frequency": {
+        "5": 29
+      },
+      "inner_k_frequency": {
+        "5": 812
+      },
+      "outer_count_replay": "PASS",
+      "parent_fold_replay": "PASS"
+    },
+    "ME-TST/CAS(ME)3": {
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/casme3_strategy1_outputs.pkl",
+      "input_sha256": "9bdcbb3fc79a3f2a4bf6729b826b5490d8a91aed913b4120c19d68cceec67bda",
+      "videos": 462,
+      "outer_k_frequency": {
+        "17": 91,
+        "16": 2,
+        "15": 1
+      },
+      "inner_k_frequency": {
+        "17": 8140,
+        "16": 388,
+        "15": 180,
+        "14": 6,
+        "18": 28
+      },
+      "outer_count_replay": "PASS",
+      "parent_fold_replay": "PASS"
+    },
+    "BoostingVRME/SAMMLV": {
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/sammlv_curves.pkl",
+      "input_sha256": "f0a6d98fd3b296b3f28c16073bfc948df7cf9468bb2f79c502e615acdc7c2d36",
+      "videos": 79,
+      "outer_k_frequency": {
+        "6": 29
+      },
+      "inner_k_frequency": {
+        "6": 812
+      },
+      "outer_count_replay": "PASS",
+      "parent_fold_replay": "PASS"
+    },
+    "BoostingVRME/CAS(ME)3": {
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/casme_3_curves.pkl",
+      "input_sha256": "8b653891e2162bf7b9506846c5dce002acdef448464d1b7f0dc516aecaeebb07",
+      "videos": 462,
+      "outer_k_frequency": {
+        "11": 93,
+        "10": 1
+      },
+      "inner_k_frequency": {
+        "11": 8480,
+        "10": 262
+      },
+      "outer_count_replay": "PASS",
+      "parent_fold_replay": "PASS"
+    }
+  }
+}

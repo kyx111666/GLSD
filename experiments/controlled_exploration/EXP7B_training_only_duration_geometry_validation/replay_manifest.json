@@ -1,0 +1,11 @@
+{
+  "experiment": "EXP-7B Phase A",
+  "source_sha256": {
+    "run_exp7b_phasea.py": "3eca17bd6c2d7c02beddb32dc2fa2e1e9b3987052b073c6ddbc1e53d11764ada",
+    "EXP7A_run": "3c5f6c0d96794e97baf98f6ef9d709dd0f235390b41eb1568fefb1d47b5a4486"
+  },
+  "frozen_input": "RethinkFuse_reproduction/caches/me_tst/casme3_strategy1_outputs.pkl",
+  "frozen_input_sha256": "9bdcbb3fc79a3f2a4bf6729b826b5490d8a91aed913b4120c19d68cceec67bda",
+  "new_prediction_written": false,
+  "new_F1_computed": false
+}

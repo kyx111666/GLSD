@@ -1,0 +1,20 @@
+{
+  "experiment": "EXP-7D",
+  "setting": "ME-TST+/SAMMLV",
+  "reused_helpers": [
+    "EXP7B PhaseA alpha_for_outer",
+    "EXP7B PhaseB blind_fixed_center_adapter",
+    "EXP7B PhaseB formal_match",
+    "EXP7B PhaseB transition_rows",
+    "EXP7B PhaseB bootstrap"
+  ],
+  "protocol_changed": false,
+  "forbidden": [
+    "alpha search",
+    "cross-dataset alpha transfer",
+    "conditional rules",
+    "Boosting",
+    "Recognition",
+    "STRS"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "experiment": "EXP-7B Phase B",
+  "setting": "ME-TST+/CAS(ME)3",
+  "alpha_source": "controlled_exploration/EXP7B_training_only_duration_geometry_validation/outer_alpha_calibration.csv",
+  "alpha_reestimated": false,
+  "adapter": "fixed-center same-parity duration scaling on all canonical P2 events",
+  "rounding_tie_break": "closest target, then closest original length, then smaller length",
+  "interval_semantics": "discrete closed",
+  "test_adapter_GT_access": false,
+  "new_method_claimed": false,
+  "Boosting_or_secondary_replication": false
+}

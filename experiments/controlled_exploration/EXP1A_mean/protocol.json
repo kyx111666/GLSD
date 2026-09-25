@@ -1,0 +1,169 @@
+{
+  "experiment": "GLSD controlled exploration EXP-1A",
+  "baseline_local_aggregation": "median",
+  "experimental_local_aggregation": "mean",
+  "only_algorithmic_change": "np.median(aligned) -> np.mean(aligned)",
+  "score": "S(c)=(G(c)+L(c))/2",
+  "scales": [
+    1.0,
+    1.5,
+    2.0
+  ],
+  "reference_scales": [
+    1.0,
+    1.5,
+    2.0
+  ],
+  "local_radii": [
+    1.0,
+    2.0,
+    3.0
+  ],
+  "thresholds": [
+    0.05,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.75
+  ],
+  "configuration_budget": 90,
+  "outer": "LOSO",
+  "inner": "LOSO excluding outer test and inner validation subjects",
+  "selection_tiebreak": [
+    "higher F1",
+    "higher precision",
+    "fewer FP",
+    "lower config order"
+  ],
+  "bootstrap_resamples": 10000,
+  "seed": 100,
+  "primary_intervals": {
+    "metst": "fixed",
+    "boostingvrme": "native"
+  },
+  "main_glsd_modified": false,
+  "source_sha256": {
+    "run_exp1a.py": "43398fd559d2b279ab31ed9fb50511fd86f5801e8f8b21a1693fcc79b6558139",
+    "unified_persistence.py": "56c531b3d63649c5173ffb7aa647fac6843a6f075db23b5f175f66fda1513723",
+    "equiscale_fair_validation.py": "c04c98aa3ba887459e03482886c183a76002341d8ad2656d49d08d9f2b8c206c"
+  },
+  "audits": {
+    "ME-TST/SAMMLV": {
+      "mean_metrics": {
+        "TP": 46,
+        "FP": 121,
+        "FN": 113,
+        "precision": 0.2754491017964072,
+        "recall": 0.2893081761006289,
+        "F1": 0.2822085889570552
+      },
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/sammlv_strategy1_outputs.pkl",
+      "input_sha256": "3b2264bd527bf144dfe10e03528ac5e637fc30e10a66d8d9575648754b298569",
+      "subjects": 29,
+      "videos": 79,
+      "outer_k_frequency": {
+        "5": 29
+      },
+      "inner_k_frequency": {
+        "5": 812
+      },
+      "selected_configuration_frequency": {
+        "unified|scale=2|height=0|tau=0.65|radius=2": 28,
+        "unified|scale=2|height=0|tau=0.5|radius=1": 1
+      },
+      "outer_count_replay": "PASS"
+    },
+    "ME-TST/CAS(ME)3": {
+      "mean_metrics": {
+        "TP": 96,
+        "FP": 913,
+        "FN": 762,
+        "precision": 0.09514370664023786,
+        "recall": 0.11188811188811189,
+        "F1": 0.10283877878950187
+      },
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/casme3_strategy1_outputs.pkl",
+      "input_sha256": "9bdcbb3fc79a3f2a4bf6729b826b5490d8a91aed913b4120c19d68cceec67bda",
+      "subjects": 94,
+      "videos": 462,
+      "outer_k_frequency": {
+        "17": 91,
+        "16": 2,
+        "15": 1
+      },
+      "inner_k_frequency": {
+        "17": 8140,
+        "16": 388,
+        "15": 180,
+        "14": 6,
+        "18": 28
+      },
+      "selected_configuration_frequency": {
+        "unified|scale=1.5|height=0|tau=0.5|radius=2": 89,
+        "unified|scale=1.5|height=0|tau=0.5|radius=3": 4,
+        "unified|scale=1.5|height=0|tau=0.4|radius=2": 1
+      },
+      "outer_count_replay": "PASS"
+    },
+    "BoostingVRME/SAMMLV": {
+      "mean_metrics": {
+        "TP": 46,
+        "FP": 103,
+        "FN": 113,
+        "precision": 0.3087248322147651,
+        "recall": 0.2893081761006289,
+        "F1": 0.2987012987012987
+      },
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/sammlv_curves.pkl",
+      "input_sha256": "f0a6d98fd3b296b3f28c16073bfc948df7cf9468bb2f79c502e615acdc7c2d36",
+      "subjects": 29,
+      "videos": 79,
+      "outer_k_frequency": {
+        "6": 29
+      },
+      "inner_k_frequency": {
+        "6": 812
+      },
+      "selected_configuration_frequency": {
+        "unified|scale=1|height=0|tau=0.75|radius=2": 28,
+        "unified|scale=1|height=0|tau=0.65|radius=1": 1
+      },
+      "outer_count_replay": "PASS"
+    },
+    "BoostingVRME/CAS(ME)3": {
+      "mean_metrics": {
+        "TP": 114,
+        "FP": 1306,
+        "FN": 744,
+        "precision": 0.08028169014084507,
+        "recall": 0.13286713286713286,
+        "F1": 0.10008779631255488
+      },
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/casme_3_curves.pkl",
+      "input_sha256": "8b653891e2162bf7b9506846c5dce002acdef448464d1b7f0dc516aecaeebb07",
+      "subjects": 94,
+      "videos": 462,
+      "outer_k_frequency": {
+        "11": 93,
+        "10": 1
+      },
+      "inner_k_frequency": {
+        "11": 8480,
+        "10": 262
+      },
+      "selected_configuration_frequency": {
+        "unified|scale=1|height=0|tau=0.2|radius=1": 48,
+        "unified|scale=1.5|height=0|tau=0.3|radius=1": 40,
+        "unified|scale=1|height=0|tau=0.5|radius=3": 4,
+        "unified|scale=1|height=0|tau=0.4|radius=1": 1,
+        "unified|scale=1|height=0|tau=0.3|radius=1": 1
+      },
+      "outer_count_replay": "PASS"
+    }
+  }
+}

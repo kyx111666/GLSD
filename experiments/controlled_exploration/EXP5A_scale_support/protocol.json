@@ -1,0 +1,146 @@
+{
+  "experiment": "EXP-5A",
+  "parent": "canonical GLSD-v1",
+  "canonical_replay": "PASS",
+  "canonical_replay_details": {
+    "ME-TST/SAMMLV": {
+      "selected_config": "PASS",
+      "prediction_list": "PASS",
+      "subject_counts": "PASS",
+      "TP": 48,
+      "FP": 126,
+      "FN": 111,
+      "F1": 0.2882882882882883,
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/sammlv_strategy1_outputs.pkl",
+      "input_sha256": "3b2264bd527bf144dfe10e03528ac5e637fc30e10a66d8d9575648754b298569"
+    },
+    "ME-TST/CAS(ME)3": {
+      "selected_config": "PASS",
+      "prediction_list": "PASS",
+      "subject_counts": "PASS",
+      "TP": 96,
+      "FP": 1085,
+      "FN": 762,
+      "F1": 0.09416380578715057,
+      "input": "<workspace-root>/RethinkFuse_reproduction/caches/me_tst/casme3_strategy1_outputs.pkl",
+      "input_sha256": "9bdcbb3fc79a3f2a4bf6729b826b5490d8a91aed913b4120c19d68cceec67bda"
+    },
+    "BoostingVRME/SAMMLV": {
+      "selected_config": "PASS",
+      "prediction_list": "PASS",
+      "subject_counts": "PASS",
+      "TP": 42,
+      "FP": 95,
+      "FN": 117,
+      "F1": 0.28378378378378377,
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/sammlv_curves.pkl",
+      "input_sha256": "f0a6d98fd3b296b3f28c16073bfc948df7cf9468bb2f79c502e615acdc7c2d36"
+    },
+    "BoostingVRME/CAS(ME)3": {
+      "selected_config": "PASS",
+      "prediction_list": "PASS",
+      "subject_counts": "PASS",
+      "TP": 120,
+      "FP": 1148,
+      "FN": 738,
+      "F1": 0.11288805268109126,
+      "input": "<workspace-root>/historical_gl_exact_fresh_reproduction/source_archive/a/boostingvrme/curve_cache/casme_3_curves.pkl",
+      "input_sha256": "8b653891e2162bf7b9506846c5dce002acdef448464d1b7f0dc516aecaeebb07"
+    }
+  },
+  "scale_semantics": {
+    "K_observed": [
+      3
+    ],
+    "reference_self_match": true,
+    "unmatched_nonreference_value": 0.0,
+    "matched_evidence_may_equal_zero": true,
+    "median": "numpy.median",
+    "K3_behavior": "second order statistic"
+  },
+  "near_threshold_margin": 0.1,
+  "bootstrap": {
+    "unit": "subject",
+    "paired": true,
+    "resamples": 10000,
+    "seed": 100,
+    "missing_denominator": "NA"
+  },
+  "gate_s": "FAIL",
+  "qualifying_settings": [],
+  "gate_reasons": [
+    "No single setting jointly met low-support enrichment, burden, and rescue-precision conditions",
+    "A subject bootstrap clearly supported FP low-support enrichment"
+  ],
+  "low_support_bootstrap": {
+    "ME-TST/SAMMLV": {
+      "n_subjects": 20,
+      "mean_difference": 0.06700216450216452,
+      "ci_low": -0.10399404761904761,
+      "ci_high": 0.2661727543290043,
+      "p_fp_gt_tp": 0.2475
+    },
+    "ME-TST/CAS(ME)3": {
+      "n_subjects": 50,
+      "mean_difference": -0.05818636883190713,
+      "ci_low": -0.09263401059872166,
+      "ci_high": -0.01952995443467199,
+      "p_fp_gt_tp": 0.9976
+    },
+    "BoostingVRME/SAMMLV": {
+      "n_subjects": 19,
+      "mean_difference": -0.016290726817042606,
+      "ci_low": -0.041353383458646614,
+      "ci_high": 0.0,
+      "p_fp_gt_tp": 0.88
+    },
+    "BoostingVRME/CAS(ME)3": {
+      "n_subjects": 49,
+      "mean_difference": 0.016189915264068065,
+      "ci_low": -0.04874392571933597,
+      "ci_high": 0.09542624457592618,
+      "p_fp_gt_tp": 0.3611
+    }
+  },
+  "hard_zero_bootstrap": {
+    "ME-TST/SAMMLV": {
+      "n_subjects": 20,
+      "mean_difference": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0,
+      "p_fp_gt_tp": 0.0
+    },
+    "ME-TST/CAS(ME)3": {
+      "n_subjects": 50,
+      "mean_difference": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0,
+      "p_fp_gt_tp": 0.0
+    },
+    "BoostingVRME/SAMMLV": {
+      "n_subjects": 19,
+      "mean_difference": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0,
+      "p_fp_gt_tp": 0.0
+    },
+    "BoostingVRME/CAS(ME)3": {
+      "n_subjects": 49,
+      "mean_difference": -0.0022979091302072667,
+      "ci_low": -0.006370441153049848,
+      "ci_high": 0.0,
+      "p_fp_gt_tp": 0.8687
+    }
+  },
+  "stage2_executed": false,
+  "canonical_glsd_modified": false,
+  "configuration_budget": 90,
+  "forbidden_variants_tested": [],
+  "source_sha256": {
+    "unified_persistence.py": "56c531b3d63649c5173ffb7aa647fac6843a6f075db23b5f175f66fda1513723",
+    "equiscale_fair_validation.py": "c04c98aa3ba887459e03482886c183a76002341d8ad2656d49d08d9f2b8c206c",
+    "run_exp5a.py": "64106e4be4fb21e7e6a42be3b59a6712815507c16a29929eba900bbb98c5c2df"
+  },
+  "status": "EXP5A_DIAGNOSTIC_GATE_FAILED",
+  "continue_missing_scale_search": false
+}

@@ -1,0 +1,15 @@
+{
+  "source_sha256": {
+    "EXP2A": "913d8100454975a492582447d20af81f112334764282b8909835c5cdf4b3d8c4",
+    "EXP2C": "1f32a8b0abb8c23de809dcf47eb97a8041408e85617cfe81868c7862f31223db",
+    "EXP6A": "8192164427715a3f1003e6a5c402ba34c94f3e47d247a295f817f75891583bc0",
+    "engine": "56c531b3d63649c5173ffb7aa647fac6843a6f075db23b5f175f66fda1513723",
+    "EXP6B": "06b8142c6df0cddf7eb42e96d43472f580ae8d99c543832dea757571831df57a"
+  },
+  "replay": "PASS",
+  "identity_cells": "PASS",
+  "k_A_equals_k_C": true,
+  "canonical_modified": false,
+  "new_method_executed": false,
+  "outer_test_cell_selected": false
+}

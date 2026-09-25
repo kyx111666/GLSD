@@ -1,0 +1,16 @@
+{
+  "source_sha256": {
+    "EXP6B": "06b8142c6df0cddf7eb42e96d43472f580ae8d99c543832dea757571831df57a",
+    "EXP6C": "b83b8ee9379bb8b0397e5d75ea1711a84cddfdbfe9bca8bbfb2c8d5aa95f7bc8",
+    "EXP2A": "913d8100454975a492582447d20af81f112334764282b8909835c5cdf4b3d8c4",
+    "EXP2C": "1f32a8b0abb8c23de809dcf47eb97a8041408e85617cfe81868c7862f31223db",
+    "engine": "56c531b3d63649c5173ffb7aa647fac6843a6f075db23b5f175f66fda1513723",
+    "EXP6D": "32ad84f9f0c034cdbd62c93df3705e23e4aec4d77ce24e1a963b611ac812ee17"
+  },
+  "parent_replay": "PASS",
+  "decomposition_identity": "PASS",
+  "new_method_executed": false,
+  "alternative_G_tested": false,
+  "formal_F1_recomputed": false,
+  "canonical_GLSD_modified": false
+}

@@ -1,0 +1,12 @@
+model_name: Qwen/Qwen3-VL-8B-Instruct
+precision_mode: auto
+allowed_precision_modes:
+  - bf16
+  - fp16
+  - int8
+  - int4
+do_sample: false
+temperature: 0
+seed: 100
+trainable_parameters: 0
+

@@ -1,0 +1,32 @@
+{
+  "experiment": "EXP-6E Prominence Stability Rule Diagnostic",
+  "parent": "EXP-6D",
+  "fixed_semantics": "E_7; saved rho/tau/k; saved R_A/R_C; canonical scipy prominence",
+  "groups": {
+    "GROUP_L": "B/S lost TP",
+    "GROUP_R": "B/S retained TP",
+    "GROUP_FR": "B/C R1 removed FP with counterpart",
+    "GROUP_FA": "B/C all R_A final FP with legal R_C counterpart"
+  },
+  "predeclared_features": [
+    "Q_P",
+    "Q_G",
+    "Q_logP"
+  ],
+  "counterpart_policy": "exact R_C peak, otherwise positive-IoU R_C peak; no counterpart is topology disappearance and receives no Q value",
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 100,
+    "unit": "outer subject"
+  },
+  "forbidden": [
+    "GLSD modification",
+    "new score",
+    "threshold search",
+    "classifier",
+    "F1/Recognition/STRS recomputation",
+    "outer-test rule selection",
+    "feature combination"
+  ],
+  "canonical_GLSD_modified": false
+}

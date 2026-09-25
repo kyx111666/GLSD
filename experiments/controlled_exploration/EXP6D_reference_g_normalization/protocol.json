@@ -1,0 +1,26 @@
+{
+  "experiment": "EXP-6D Reference-G Normalization / Scale-Stability Diagnostic",
+  "parent": "EXP-6C",
+  "fixed_semantics": "E_7; saved rho/tau/k; saved R_A/R_C; canonical scipy prominence",
+  "predefined_features": [
+    "Q_P",
+    "Q_G",
+    "Q_logP"
+  ],
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 100,
+    "unit": "outer subject"
+  },
+  "forbidden": [
+    "GLSD modification",
+    "new score",
+    "thresholding",
+    "configuration selection",
+    "F1/recognition/STRS recomputation",
+    "new decoder",
+    "alternative normalization",
+    "outer-test rule design"
+  ],
+  "canonical_GLSD_modified": false
+}

@@ -1,0 +1,12 @@
+{
+  "experiment": "EXP-7E",
+  "setting": "BoostingVRME/SAMMLV",
+  "engine": "direct EXP-7C protocol invocation",
+  "changed_inputs_only": [
+    "dataset identity",
+    "canonical SAMMLV folds",
+    "output directory"
+  ],
+  "protocol_changed": false,
+  "prior_experiments_rerun": false
+}

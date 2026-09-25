@@ -1,0 +1,46 @@
+# %% CELL 1 上传联合搜索包
+from google.colab import files
+from pathlib import Path
+import hashlib, io, json, zipfile
+
+uploaded = files.upload()  # 只选 metst_joint_gm.zip
+assert len(uploaded) == 1, '请只上传本轮联合搜索包'
+joint_dir = Path('/content/glsd_joint_gm')
+joint_dir.mkdir(exist_ok=True)
+with zipfile.ZipFile(io.BytesIO(next(iter(uploaded.values())))) as z:
+    expected = {'official_response_component_ablation.py': 'c9519c241fcc57f4916853d5375d4978da5a48a8b19f76fe3f91e5dab2801bc7', 'run_p8_threshold_control.py': 'fb1c446f01200c390fb7b5c16961e60bf28af811e41ba39aba148bdd5f698b34', 'run_p8_phase2.py': 'bfd7d6bed67f00b20ef801180763a864b0134e0ec4e1035ffa943c2aab2be442', 'colab_p8_threshold_entry.py': 'a0ea99b628053ae6f4b5827c5ddc58cb3c585fe23307318d79cdaaf8d3acf42b', 'run_generalized_mean_screening.py': 'b4d4e97f4f9ce18c57998eac372294ac27743effb6090134fc6190befa42cb86', 'test_p8_matching.py': '1ec9e0cebda3d8945b768288ac5d21fc42dc4670aae3d6cbe526e2c259ced203', 'colab_p8_entry.py': '915c46e8dd79bcc9cc8cc87cf3d451e5ca754695292575fd9c48765cbe9fe792', 'colab_p8_one_to_one_entry.py': '8e48f9def2859acb8011aef324ddab99b36f34f2874cb4d33907731de1c1afe1', 'test_p8_threshold_control.py': 'b6d0b945436683cf6f4335669ceb3e8fc9e32152bc4c686d06a4818e7547d447', 'test_p8_phase2.py': '5b1e7806500667c5dbe4a34b0d7a6d05701f2f15a09efbd1cd46f1bf612f90da', 'run_p8_one_to_one.py': '509312a1d1afb3d9dc04ebc134609fb915abb4e301eb46a6f651223e522c1795', 'run_colab_p8_threshold.py': 'f8a6767882301715914e0d4de639e5e0e7494a8276d6939c488782f7dff446a4', 'run_joint_gm.py': '7d7481223a81362cfb37db20ea7cec6466b4e1da4ddffce39f97d67048952cc8', 'test_joint_gm.py': '0fe351515a80d369c0f099bfedd8dd8750250e5974e381f2d6d0cc7beed51a60', 'colab_joint_gm_entry.py': '660e69fe9606d3af0d163f19ca543f7bcb3c9a9b7dc041f6b349b91ab7ade0f1', 'run_colab_joint_gm.py': 'ee8728e5911cd1510965fbe37641d7b96edf8783f9fac71b620e83c0c1fc008e', 'README_JOINT_GM.md': 'cae239e5eaf05835f2c3d3fca08c316726c2dfdd0488dff9a171a3767bbf4090', 'one_to_one_evaluator.py': '0b61a8eac4be63b9785cba4dc1ac5364575f9becd3447258079e2a11f9831008'}
+    assert set(z.namelist()) == set(expected) | {'package_manifest.json'}, '不是本轮运行包'
+    assert json.loads(z.read('package_manifest.json')) == expected
+    for name, digest in expected.items():
+        assert hashlib.sha256(z.read(name)).hexdigest() == digest, name + ' 哈希错误'
+    z.extractall(joint_dir)
+JOINT_OLD = '/content/drive/MyDrive/GLSD_P8_ONE_TO_ONE/full_20260922T053538_684804Z'
+JOINT_THRESHOLD_PATHS = {
+    'sammlv': '/content/drive/MyDrive/GLSD_P8_THRESHOLD_CONTROL/full_sammlv_20260922T070420_025128Z',
+    'casme3': '/content/drive/MyDrive/GLSD_P8_THRESHOLD_CONTROL/full_casme3_20260922T071214_000063Z',
+}
+print('联合搜索包已就绪，下一格运行 probe。')
+
+
+# %% CELL 2 SAMMLV probe
+JOINT_MODE = 'probe'
+JOINT_SETTING = 'sammlv'
+JOINT_RESUME = None
+entry = joint_dir / 'run_colab_joint_gm.py'
+exec(compile(entry.read_text(encoding='utf-8'), str(entry), 'exec'))
+
+
+# %% CELL 3 SAMMLV full
+JOINT_MODE = 'full'
+JOINT_SETTING = 'sammlv'
+JOINT_RESUME = None
+entry = joint_dir / 'run_colab_joint_gm.py'
+exec(compile(entry.read_text(encoding='utf-8'), str(entry), 'exec'))
+
+
+# %% CELL 4 CAS(ME)3 full，内部先probe
+JOINT_MODE = 'full'
+JOINT_SETTING = 'casme3'
+JOINT_RESUME = None
+entry = joint_dir / 'run_colab_joint_gm.py'
+exec(compile(entry.read_text(encoding='utf-8'), str(entry), 'exec'))

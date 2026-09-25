@@ -1,0 +1,23 @@
+{
+  "experiment": "EXP-6B Reference x Evidence Cross-Replay",
+  "diagnostic_only": true,
+  "selection": "saved EXP-2A/EXP-2C outer-fold choices only",
+  "anchors": [
+    "A: rho_A,tau_A,k_A",
+    "C: rho_C,tau_C,k_C"
+  ],
+  "cells": [
+    "R_A+E_7",
+    "R_A+E_3",
+    "R_C+E_7",
+    "R_C+E_3"
+  ],
+  "forbidden": [
+    "outer/inner reselection",
+    "new hyperparameters",
+    "canonical GLSD modification",
+    "outer-test cell selection",
+    "EXP-6C",
+    "STRS replay"
+  ]
+}
