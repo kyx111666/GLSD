@@ -2,7 +2,7 @@
 
 Reference implementation, notebooks, and reproducibility materials for the
 Global-Local Saliency Decoder (GLSD) study on long-video micro-expression
-spotting.
+spotting. 
 
 The repository is organised around experiment families rather than one large
 training script. The main implementation operates on frozen temporal response
