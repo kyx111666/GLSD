@@ -72,6 +72,11 @@ virtual environments, archives, and platform-specific files are ignored by
 `.gitignore`. A release manifest is written to `FILE_MANIFEST.sha256` after the
 final source review.
 
-No top-level software license has been selected yet. Add the intended license
-before publishing the repository if redistribution terms are required. Review
-[docs/THIRD_PARTY.md](docs/THIRD_PARTY.md) for the baseline code boundary.
+## License
+
+The original GLSD code is released under the [MIT License](LICENSE).
+
+Third-party and baseline components under `experiments/baselines/` and
+`experiments/third_party/` are excluded from the GLSD license and remain
+subject to their original license terms. See
+[docs/THIRD_PARTY.md](docs/THIRD_PARTY.md) for details.
