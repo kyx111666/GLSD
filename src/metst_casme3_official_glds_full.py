@@ -31,7 +31,7 @@ OUTPUT_DIR = RELEASE_ROOT / "outputs/metst_casme3"
 PREREG_PATH = _INPUTS["preregistration"]
 
 EXPECTED_GLSD_SHA256 = (
-    "6f500e5af179a28e8a4f5e49a926004c1a60887a3cc27b1e9df2b9d61c94ca3d"
+    "2c26901407f07ed110b94fa6471faadf54b40104749cf3e542997cb3b4e5ca72"
 )
 
 EXPECTED_NATIVE_RAW = None
@@ -845,7 +845,7 @@ def decode_glsd_subject(
 
 
 # ============================================================
-# Per-video audit
+# Per-video evaluation
 # ============================================================
 
 def per_video_evidence(
@@ -1454,7 +1454,7 @@ def run_full(
     )
 
     final_predictions = []
-    auditable_predictions = []
+    detailed_predictions = []
     per_video_rows = []
     per_subject_rows = []
 
@@ -1564,14 +1564,14 @@ def run_full(
             raw_counts
         ):
             raise RuntimeError(
-                "per-video RAW audit mismatch"
+                "per-video RAW validation mismatch"
             )
 
         if evidence_full != tuple(
             full_counts
         ):
             raise RuntimeError(
-                "per-video FULL audit mismatch"
+                "per-video FULL validation mismatch"
             )
 
         glsd_raw += np.asarray(
@@ -1642,7 +1642,7 @@ def run_full(
             video_rows
         )
 
-        auditable_predictions.extend(
+        detailed_predictions.extend(
             video_evidence
         )
 
@@ -1768,7 +1768,7 @@ def run_full(
         == raw_from_videos
     ):
         raise RuntimeError(
-            "RAW aggregate audit failed"
+            "RAW aggregate validation failed"
         )
 
     if not (
@@ -1777,7 +1777,7 @@ def run_full(
         == full_from_videos
     ):
         raise RuntimeError(
-            "FULL aggregate audit failed"
+            "FULL aggregate validation failed"
         )
 
     # --------------------------------------------------------
@@ -1841,12 +1841,12 @@ def run_full(
 
     with (
         OUTPUT_DIR
-        / "glsd_final_predictions_auditable.pkl"
+        / "glsd_prediction_details.pkl"
     ).open(
         "wb"
     ) as f:
         pickle.dump(
-            auditable_predictions,
+            detailed_predictions,
             f,
             protocol=pickle.HIGHEST_PROTOCOL,
         )
@@ -1954,51 +1954,8 @@ def run_full(
         manifest,
     )
 
-    audit_lines = [
-        "# ME-TST+ CAS(ME)3 GLSD Official-Response Audit",
-        "",
-        "## Native exact gate",
-        "",
-        f"- Native raw: `{native['raw_counts']}`; F1 = {f1(native['raw_counts']):.10f}.",
-        f"- Native full: `{native['full_counts']}`; F1 = {f1(native['full_counts']):.10f}.",
-        "- Native exact replay: `PASS`.",
-        "",
-        "## Locked GLSD",
-        "",
-        f"- Shared GLSD source SHA-256: `{sha256_file(LOCKED_GLSD_PATH)}`.",
-        "- Grid: 3 reference scales × 3 local radii × 10 thresholds = 90.",
-        "- Score: `S(c)=(G(c)+L(c))/2`.",
-        "- Missing-scale support: zero.",
-        "- Multi-scale aggregation: median.",
-        "- Selection: outer LOSO with pooled 28-subject inner validation.",
-        "- Tie-break: F1 → precision → fewer FP → fixed grid order.",
-        "- No new tuning or post-hoc configuration search.",
-        "",
-        "## GLSD official-response result",
-        "",
-        f"- Raw: `{raw_counts}`; F1 = {f1(raw_counts):.10f}.",
-        f"- Full: `{full_counts}`; F1 = {f1(full_counts):.10f}.",
-        f"- Delta raw: `{f1(raw_counts)-f1(native['raw_counts']):.10f}`.",
-        f"- Delta full: `{f1(full_counts)-f1(native['full_counts']):.10f}`.",
-        "",
-        "## Verdict",
-        "",
-        "`METST_CASME3_GLSD_FULL_VALIDATED = PASS`",
-        "",
-    ]
-
-    (
-        OUTPUT_DIR
-        / "METST_CASME3_GLSD_FULL_AUDIT.md"
-    ).write_text(
-        "\n".join(
-            audit_lines
-        ),
-        encoding="utf-8",
-    )
-
     # --------------------------------------------------------
-    # Final report
+    # Results
     # --------------------------------------------------------
 
     print()

@@ -27,7 +27,7 @@ def one_generic(root: Path, setting: str) -> dict:
 
 
 def casme3(root: Path) -> dict:
-    path = root / "recovery_manifest.json"
+    path = root / "replay_manifest.json"
     data = json.loads(path.read_text(encoding="utf-8"))
     setting = "boosting_casme3"
     expected = LOCKED[setting]
@@ -48,7 +48,7 @@ def main() -> None:
     parser.add_argument("--boosting-sammlv", type=Path, required=True)
     parser.add_argument("--boosting-casme3", type=Path, required=True)
     args = parser.parse_args()
-    mapping_gate = args.output_root / "audit/mapping_gate.json"
+    mapping_gate = args.output_root / "validation/mapping_gate.json"
     mapping = json.loads(mapping_gate.read_text(encoding="utf-8"))
     if mapping.get("status") != "PASS":
         raise RuntimeError("TRANSFER_PROTOCOL_FAIL: mapping gate is not PASS")
@@ -71,13 +71,13 @@ def main() -> None:
             "TP": record["tuned"][0], "FP": record["tuned"][1], "FN": record["tuned"][2],
             "F1": f1(record["tuned"]), "exact_replay": "PASS", "source": record["source"],
         })
-    write_csv(args.output_root / "audit/native_replay.csv", native_rows)
-    write_csv(args.output_root / "audit/tuned_glsd90_replay.csv", tuned_rows)
+    write_csv(args.output_root / "validation/native_replay.csv", native_rows)
+    write_csv(args.output_root / "validation/tuned_glsd90_replay.csv", tuned_rows)
     gate = {
         "status": "PASS", "native_exact_replays": 4, "tuned_glsd90_exact_replays": 4,
         "mapping_gate": str(mapping_gate), "transfer_allowed": True,
     }
-    write_json(args.output_root / "audit/preflight_gate.json", gate)
+    write_json(args.output_root / "validation/preflight_gate.json", gate)
     print("FOUR_SETTING_EXACT_REPLAY_GATE = PASS")
 
 

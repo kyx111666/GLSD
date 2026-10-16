@@ -22,7 +22,7 @@ def invoke(name, argv):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=('check', 'main', 'search', 'threshold', 'runtime', 'replay', 'ablation',
-                        'transfer-audit', 'transfer-gate', 'transfer', 'transfer-summary'))
+                        'transfer-check', 'transfer-gate', 'transfer', 'transfer-summary'))
     parser.add_argument('--config', type=Path, required=True,
                         help='input JSON; paths inside it are relative to its own directory')
     parser.add_argument('--setting', choices=SETTINGS)
@@ -67,7 +67,7 @@ def main():
             for path in required:
                 if not path.exists(): missing.append(f'{name}: {path}')
         core = ROOT / 'src/boosting_official_glds_full_LOCKED.py'
-        if hashlib.sha256(core.read_bytes()).hexdigest() != '6f500e5af179a28e8a4f5e49a926004c1a60887a3cc27b1e9df2b9d61c94ca3d':
+        if hashlib.sha256(core.read_bytes()).hexdigest() != '2c26901407f07ed110b94fa6471faadf54b40104749cf3e542997cb3b4e5ca72':
             parser.error('frozen core checksum mismatch')
         if missing:
             print('Missing external inputs:\n' + '\n'.join(missing))
@@ -108,8 +108,8 @@ def main():
     elif args.command == 'ablation':
         invoke('run_locked_alpha_ablation', ['--setting', setting.removeprefix('metst_'),
                '--output', output] + (['--probe-only'] if args.probe_only else []))
-    elif args.command == 'transfer-audit':
-        invoke('transfer_audit', ['--output-root', output])
+    elif args.command == 'transfer-check':
+        invoke('validate_transfer', ['--output-root', output])
     elif args.command == 'transfer-gate':
         argv = ['--output-root', output]
         for name in SETTINGS:

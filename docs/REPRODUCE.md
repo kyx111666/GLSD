@@ -51,10 +51,10 @@ Weights are 0, 0.3, 0.5, 0.7 and 1. The saved per-fold scale, radius and thresho
 
 ## Cross-pipeline transfer
 
-First audit subject/video correspondence:
+First validate subject/video correspondence:
 
 ```bash
-python run.py transfer-audit --config configs/inputs.json --output outputs/transfer
+python run.py transfer-check --config configs/inputs.json --output outputs/transfer
 ```
 
 Run four replays, each in its matching upstream environment:

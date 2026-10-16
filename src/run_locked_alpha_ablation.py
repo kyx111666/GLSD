@@ -18,7 +18,7 @@ from pathlib import Path
 
 import numpy as np
 
-# The archived ME-TST evaluator still calls DataFrame.append. Recent
+# The upstream ME-TST evaluator still calls DataFrame.append. Recent
 # pandas removed it, so install the same compatibility alias used by
 # the original runner before constructing any ME-TST context.
 try:
@@ -269,10 +269,10 @@ def main():
     all_rows, all_comparisons = [], []
     for name in selected:
         context = ora.metst_context(ora.SPECS[name])
-        audit = output / f"{name}_evaluation_audit"
-        audit.mkdir()
+        evaluation = output / f"{name}_evaluation"
+        evaluation.mkdir()
         with evaluator.install(context[2]) as info:
-            shared.write_json(audit / "matching_protocol.json", info)
+            shared.write_json(evaluation / "matching_protocol.json", info)
             rows, comparisons = run_setting(
                 ora, name, output / name, tuple(args.alphas),
                 prepared_context=context, probe_only=args.probe_only,

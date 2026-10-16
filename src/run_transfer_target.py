@@ -273,7 +273,7 @@ def main() -> None:
     args = parser.parse_args()
     DIRECTION_NAME = args.direction
     DIRECTION = DIRECTIONS[DIRECTION_NAME]
-    gate = json.loads((args.output_root / "audit/preflight_gate.json").read_text(encoding="utf-8"))
+    gate = json.loads((args.output_root / "validation/preflight_gate.json").read_text(encoding="utf-8"))
     if gate.get("status") != "PASS" or not gate.get("transfer_allowed"):
         raise RuntimeError("TRANSFER_PROTOCOL_FAIL: four-setting exact replay gate is not PASS")
     source_path = EVIDENCE[DIRECTION["source"]] / "outer_selected_configs.csv"

@@ -246,10 +246,10 @@ def choose_mean_synergy(mean_table, g_table, l_table, outer_index,
     winner = min(candidates, key=lambda i: (-mean_metrics[i]["F1"],
                                             -mean_metrics[i]["precision"],
                                             mean_metrics[i]["FP"], i))
-    audit = dict(selection_rule="near_optimal_mean_synergy_v1",
+    validation = dict(selection_rule="near_optimal_mean_synergy_v1",
                  epsilon=float(epsilon), best_inner_mean_F1=float(best_f1),
                  eligible_count=len(eligible), max_synergy_margin=float(max_margin),
                  selected_synergy_margin=float(margins[winner]),
                  selected_config_id=int(winner),
                  eligible_config_ids=[int(i) for i in eligible])
-    return winner, mean_pooled, audit
+    return winner, mean_pooled, validation

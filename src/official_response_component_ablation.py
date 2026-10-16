@@ -14,7 +14,7 @@ from pathlib import Path
 
 import numpy as np
 
-# Compatibility for the legacy official evaluator under current pandas.
+# Compatibility for the upstream evaluator under current pandas.
 # Keep this in the shared adapter as well as the alpha runner because the
 # evaluator may be imported through a dataset-specific entry point.
 try:
@@ -33,8 +33,6 @@ except ImportError:
     pass
 
 
-DRIVE = Path("data")
-PACKAGE_ROOT = Path(__file__).resolve().parent
 MODES = ("H", "G", "L", "GL")
 MODE_LABELS = {"H": "H", "G": "G", "L": "L", "GL": "matched-budget-GL-30"}
 SCALES = (1.0, 1.5, 2.0)
@@ -60,76 +58,48 @@ class ComponentConfig:
 # Dataset counts are frozen; input locations are configured below.
 SPECS = {
     "metst_sammlv": {
-        "label": "ME-TST+ / SAMMLV",
-        "kind": "metst",
-        "dump": DRIVE / "ME-TST_OFFICIAL_DUMP/SAMMLV_method1_strategy1",
-        "evidence": DRIVE / "GLSD_METST_OFFICIAL/SAMMLV_FINAL_EVIDENCE",
-        "run_evidence": DRIVE / "GLSD_METST_OFFICIAL/SAMMLV_FINAL_EVIDENCE/results_v1",
-        "results": DRIVE / "GLSD_METST_OFFICIAL/results_v1",
-        "locked_results": DRIVE / "GLSD_METST_OFFICIAL/SAMMLV_FINAL_EVIDENCE/results_v1",
-        "source": DRIVE / "GLSD_METST_OFFICIAL/SAMMLV_FINAL_EVIDENCE/metst_official_glds_full.py",
-        "core": DRIVE / "GLSD_METST_OFFICIAL/SAMMLV_FINAL_EVIDENCE/boosting_official_glds_full_LOCKED.py",
+        "label": 'ME-TST+ / SAMMLV',
+        "kind": 'metst',
         "subjects": 29,
         "videos": 79,
         "gt": 159,
         "native_full": (52, 171, 107),
         "glsd_full": (47, 121, 112),
-        "native_reported_f1": "0.2723",
-        "glsd_reported_f1": "0.2875",
+        "native_reported_f1": '0.2723',
+        "glsd_reported_f1": '0.2875',
     },
     "metst_casme3": {
-        "label": "ME-TST+ / CAS(ME)3",
-        "kind": "metst",
-        "dump": DRIVE / "ME-TST_OFFICIAL_DUMP/CASME_3_method1_strategy1",
-        "evidence": DRIVE / "GLSD_METST_OFFICIAL/CASME3_FINAL_EVIDENCE",
-        "run_evidence": DRIVE / "GLSD_METST_OFFICIAL/CASME3_FINAL_EVIDENCE/results_v1",
-        "results": DRIVE / "GLSD_METST_OFFICIAL/CASME3/results_v1",
-        "locked_results": DRIVE / "GLSD_METST_OFFICIAL/CASME3_FINAL_EVIDENCE/results_v1",
-        "source": DRIVE / "GLSD_METST_OFFICIAL/CASME3_FINAL_EVIDENCE/source/metst_casme3_official_glds_full.py",
-        "core": DRIVE / "GLSD_METST_OFFICIAL/CASME3_FINAL_EVIDENCE/source/boosting_official_glds_full_LOCKED.py",
+        "label": 'ME-TST+ / CAS(ME)3',
+        "kind": 'metst',
         "subjects": 94,
         "videos": 462,
         "gt": 853,
         "native_full": (76, 736, 777),
         "glsd_full": (90, 898, 763),
-        "native_reported_f1": "0.0912912913",
-        "glsd_reported_f1": "0.0977729495",
+        "native_reported_f1": '0.0912912913',
+        "glsd_reported_f1": '0.0977729495',
     },
     "boosting_sammlv": {
-        "label": "BoostingVRME / SAMMLV",
-        "kind": "boosting",
-        "cache": DRIVE / "GLSD_BoostingVRME_Full/sammlv_official_full_responses.pkl",
-        "evidence": DRIVE / "GLSD_BoostingVRME_Full/results_evidence_v2",
-        "run_evidence": DRIVE / "GLSD_BoostingVRME_Full/results_evidence_v2",
-        "locked_results": DRIVE / "GLSD_BoostingVRME_Full/results_evidence_v2",
-        "source": (PACKAGE_ROOT / "boosting_official_glds_full.py"
-                   if (PACKAGE_ROOT / "boosting_official_glds_full.py").exists()
-                   else PACKAGE_ROOT / "boosting_official_glds_full.py"),
+        "label": 'BoostingVRME / SAMMLV',
+        "kind": 'boosting',
         "subjects": 29,
         "videos": 79,
         "gt": 159,
         "native_full": (51, 141, 108),
         "glsd_full": (44, 82, 115),
-        "native_reported_f1": "0.2906",
-        "glsd_reported_f1": "0.3088",
+        "native_reported_f1": '0.2906',
+        "glsd_reported_f1": '0.3088',
     },
     "boosting_casme3": {
-        "label": "BoostingVRME / CAS(ME)3",
-        "kind": "boosting",
-        "cache": DRIVE / "GLSD_BoostingVRME_Full/CASME3/official_response_cache/casme3_official_full_responses.pkl",
-        "evidence": DRIVE / "GLSD_BoostingVRME_Full/CASME3/glsd_full_evidence_v1",
-        "run_evidence": DRIVE / "GLSD_BoostingVRME_Full/CASME3/glsd_full_evidence_v1",
-        "locked_results": DRIVE / "GLSD_BoostingVRME_Full/CASME3/glsd_full_evidence_v1",
-        "source": (PACKAGE_ROOT / "boosting_official_glds_full_casme3.py"
-                   if (PACKAGE_ROOT / "boosting_official_glds_full_casme3.py").exists()
-                   else PACKAGE_ROOT / "boosting_official_glds_full_casme3.py"),
+        "label": 'BoostingVRME / CAS(ME)3',
+        "kind": 'boosting',
         "subjects": 94,
         "videos": 462,
         "gt": 853,
         "native_full": (84, 786, 769),
         "glsd_full": (120, 1110, 733),
-        "native_reported_f1": "0.0975043529",
-        "glsd_reported_f1": "0.1152184349",
+        "native_reported_f1": '0.0975043529',
+        "glsd_reported_f1": '0.1152184349',
     },
 }
 
@@ -213,7 +183,7 @@ def required_paths(spec: dict) -> list[Path]:
 def verify_sealed_inputs(spec: dict) -> dict:
     missing = [str(path) for path in required_paths(spec) if not path.exists()]
     if missing:
-        raise RuntimeError("Drive preflight failed; missing sealed input(s):\n" + "\n".join(missing))
+        raise RuntimeError("Input check failed; missing file(s):\n" + "\n".join(missing))
     manifest = json.loads((spec["run_evidence"] / "run_manifest.json").read_text(encoding="utf-8"))
     text = (spec["evidence"] / "evidence_bundle_sha256.txt").read_text(encoding="utf-8")
     if not text.strip():
@@ -563,8 +533,6 @@ def run_preflight_setting(name: str, output: Path) -> dict:
         "setting": spec["label"], "sealed_manifest": sealed_manifest, "stage": stage,
         "raw_counts_mean": "raw spotting evaluator counts before official recognition/result synergy",
         "full_counts_mean": "same official spot predictions after official recognition/result synergy conversion",
-        "table_2_bootstrap_stage": "full counts; the locked Table 2 F1 values equal full-count F1",
-        "H_lineage": "Exact matched-budget H formula inherited verbatim from gl_saliency_skill/evidence.py:99; no new normalization choice",
         "score_formulas": {"H": "max(0, (smooth[peak]-mean)/(smooth.max()-mean))", "G": "global prominence / reference smoothed range", "L": "median aligned local saliency / per-scale range, missing scale=0", "GL": "(G+L)/2"},
         "matched_budget": {"modes": list(MODES), "configs_per_mode": 30, "a0": list(SCALES), "tau_source": "locked GLSD ten-value grid", "rho": {"L": RHO, "GL": RHO, "H": "not searched", "G": "not searched"}},
         "summary": row,
@@ -579,40 +547,6 @@ def run_preflight(settings: list[str], root: Path) -> None:
         raise RuntimeError("locked-result replay tolerance failed")
     write_csv(root / "locked_replay_summary.csv", rows)
     write_json(root / "preflight_manifest.json", {"preflight_only": True, "ablation_search_started": False, "bootstrap_started": False, "settings": settings, "stage": "full counts / official recognition-result-synergy final predictions"})
-    audit_lines = [
-        "# Official-response locked-result preflight",
-        "",
-        "This run replayed sealed Native and locked GLSD-90 selections only. It did not construct a component-score grid, run H/G/L/GL selection, or run bootstrap.",
-        "",
-        "## Evaluation stage",
-        "",
-        "All four Table-2 locked F1 values are **full-count F1**: official spotting is evaluated first to form raw spotting counts, then the same spotting predictions pass through the locked official recognition/result-synergy call and `full_counts_from_official_synergy`. Bootstrap and any subsequent H/G/L/GL comparison must use these full counts.",
-        "",
-        "- ME-TST+: `official.spotting -> sequence_counts_quiet` (raw), then `official.recognition(result1_all) -> full_counts_from_official_synergy` (full).",
-        "- BoostingVRME: `official.spotting -> official.sequence_evaluation` (raw), then `official.recognition(recognition_sequence) -> full_counts_from_official_synergy` (full).",
-        "",
-        "## Locked replay totals",
-        "",
-        "| Setting | Subjects | Videos | GT | Native full TP/FP/FN | Native replay / locked F1 | GLSD-90 full TP/FP/FN | GLSD-90 replay / locked F1 | Absolute differences |",
-        "|---|---:|---:|---:|---|---|---|---|---:|",
-    ]
-    for row in rows:
-        audit_lines.append(
-            f"| {row['setting']} | {row['subjects']} | {row['videos']} | {row['GT_events']} | "
-            f"{row['Native_TP']}/{row['Native_FP']}/{row['Native_FN']} | {row['Native_replay_F1']:.12f} / {row['Native_locked_reported_F1']} | "
-            f"{row['GLSD_TP']}/{row['GLSD_FP']}/{row['GLSD_FN']} | {row['GLSD_replay_F1']:.12f} / {row['GLSD_locked_reported_F1']} | "
-            f"Native={row['Native_absolute_difference']:.1e}; GLSD={row['GLSD_absolute_difference']:.1e} |"
-        )
-    audit_lines.extend([
-        "",
-        "## Future matched-budget component scores (not executed in this preflight)",
-        "",
-        "`H` directly inherits the exact prior matched-budget normalized reference-peak formula in `make_component_features()` (source lineage: `gl_saliency_skill/evidence.py:99`): `max(0, (smooth[peak] - mean) / max(smooth.max() - mean, 1e-12))`. `G` is the locked global normalized prominence, `L` is aligned multi-scale local saliency, and `GL` is the fixed `(G+L)/2`.",
-        "",
-        "Each future mode has exactly 30 configurations: 3 `a0` values × the locked 10-value `tau` grid. `rho=2` is fixed only for L/GL; H/G have no rho parameter. The future output label is `GL` / `matched-budget-GL-30`, never `GLSD-90`.",
-        "",
-    ])
-    (root / "preflight_stage_audit.md").write_text("\n".join(audit_lines), encoding="utf-8")
     print("OFFICIAL_RESPONSE_PREFLIGHT = PASS")
     print("PREFLIGHT_OUTPUT =", root)
 
@@ -713,7 +647,7 @@ def run_setting(name: str, root: Path) -> None:
     write_csv(output / "ablation_inner_fold_counts.csv", inner_rows)
     write_json(output / "ablation_manifest.json", {
         "setting": spec["label"], "created_utc": datetime.now(timezone.utc).isoformat(),
-        "input_mode": "sealed official-response evidence only", "historical_controlled_cache_used": False,
+        "input_mode": "official temporal responses",
         "source": str(spec["source"]), "source_sha256": sha256(spec["source"]),
         "sealed_evidence": str(spec["evidence"]), "sealed_manifest": sealed_manifest,
         "score_modes": {"H": "normalized reference peak-height amplitude", "G": "global normalized prominence", "L": "aligned multi-scale local saliency", "GL": "matched-budget-GL-30: fixed (G+L)/2; not locked GLSD-90"},
@@ -727,7 +661,7 @@ def run_setting(name: str, root: Path) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--setting", choices=(*SPECS, "all"), default="all")
-    parser.add_argument("--output-root", type=Path, default=DRIVE / "official_response_ablation")
+    parser.add_argument("--output-root", type=Path, default=Path("outputs/component_ablation"))
     parser.add_argument(
         "--preflight-only",
         action="store_true",

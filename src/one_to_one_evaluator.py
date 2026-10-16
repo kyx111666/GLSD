@@ -7,8 +7,6 @@ is intentionally disallowed for this one-to-one event evaluation protocol.
 The nested GT-index format expected by recognition is preserved.
 """
 from contextlib import contextmanager
-import hashlib
-import inspect
 
 import numpy as np
 
@@ -42,15 +40,10 @@ def install(metric_class):
     original_evaluate = metric_class._evaluate_class
     scope = original_evaluate.__globals__
     original_check = scope["check_box"]
-    source = inspect.getsource(original_check)
     info = dict(protocol=PROTOCOL, metric_class=metric_class.__name__,
-                metric_source=inspect.getsourcefile(metric_class),
-                legacy_check_box_source=source,
-                legacy_check_box_sha256=hashlib.sha256(source.encode()).hexdigest(),
-                prediction_order="unchanged evaluator input order; no confidence resorting",
-                iou="unchanged caller threshold, normally >=0.5",
-                assignment="at most one GT per prediction and one prediction per GT within each video",
-                score_comparability="revised evaluation; do not pool with legacy official counts")
+                prediction_order="input order",
+                iou="caller-specified threshold, normally >=0.5",
+                assignment="one prediction per ground-truth event within each video")
 
     def checked_evaluate(self, *args, **kwargs):
         result = original_evaluate(self, *args, **kwargs)

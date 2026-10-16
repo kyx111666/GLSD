@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed functional preflight for BoostingVRME / CAS(ME)3 GLSD-90.
-
-This phase-one adapter uses only APIs present in
-``boosting_official_glds_full_casme3.py``. It does not run component
-ablation or bootstrap. It writes recovery evidence only after every locked
-functional replay and sealed-evidence comparison passes.
-"""
+"""Replay Native and GLSD configurations for BoostingVRME on CAS(ME)3."""
 
 from __future__ import annotations
 
@@ -241,29 +235,29 @@ def validate_manifest(manifest_path: Path, cache_sha: str, runner_sha: str) -> d
         "manifest GLSD full counts",
     )
 
-    historical_cache_sha = str(manifest.get("cache_sha256", "")).lower()
-    if not historical_cache_sha:
+    recorded_cache_sha = str(manifest.get("cache_sha256", "")).lower()
+    if not recorded_cache_sha:
         raise RuntimeError("run_manifest.json lacks cache_sha256")
-    if cache_sha.lower() != historical_cache_sha:
+    if cache_sha.lower() != recorded_cache_sha:
         raise RuntimeError(
             "HARD FAIL: cache_sha256 mismatch: "
-            f"current={cache_sha}, historical={historical_cache_sha}"
+            f"current={cache_sha}, recorded={recorded_cache_sha}"
         )
 
-    historical_core_sha = str(manifest.get("core_script_sha256", "")).lower()
-    if not historical_core_sha:
+    recorded_core_sha = str(manifest.get("core_script_sha256", "")).lower()
+    if not recorded_core_sha:
         raise RuntimeError("run_manifest.json lacks core_script_sha256")
-    historical_wrapper_sha = str(manifest.get("script_sha256", "")).lower()
-    if not historical_wrapper_sha:
-        raise RuntimeError("run_manifest.json lacks historical wrapper script_sha256")
+    recorded_wrapper_sha = str(manifest.get("script_sha256", "")).lower()
+    if not recorded_wrapper_sha:
+        raise RuntimeError("run_manifest.json lacks recorded script_sha256")
 
     return {
         "manifest": manifest,
-        "historical_cache_sha256": historical_cache_sha,
-        "historical_core_runner_sha256": historical_core_sha,
-        "historical_execution_wrapper_sha256": historical_wrapper_sha,
+        "recorded_cache_sha256": recorded_cache_sha,
+        "recorded_core_runner_sha256": recorded_core_sha,
+        "recorded_execution_wrapper_sha256": recorded_wrapper_sha,
         "current_runner_sha256": runner_sha.lower(),
-        "runner_sha_match": runner_sha.lower() == historical_core_sha,
+        "runner_sha_match": runner_sha.lower() == recorded_core_sha,
     }
 
 
@@ -304,7 +298,7 @@ def validate_universe(cache: dict, videos: list[dict], grouped: list[list[dict]]
 def validate_native(runner, cache: dict, grouped: list[list[dict]]) -> dict:
     native = runner.native_exact_replay(cache, grouped)
     if not isinstance(native, dict):
-        raise RuntimeError("native_exact_replay did not return its audit dictionary")
+        raise RuntimeError("native_exact_replay did not return its validation dictionary")
     required = {
         "passed", "raw_counts", "full_counts", "prediction_exact",
         "recognition_exact", "matched_gt_exact",
@@ -613,15 +607,15 @@ def validate_grid(runner) -> list[dict]:
     return grid
 
 
-def write_recovery_outputs(
-    output: Path, recovery: dict, table: np.ndarray, selected_rows: list[dict],
+def write_replay_outputs(
+    output: Path, replay: dict, table: np.ndarray, selected_rows: list[dict],
     per_subject_rows: list[dict], runner,
 ) -> None:
     output.mkdir(parents=True, exist_ok=False)
     table_path = output / "functional_glsd90_subject_config_raw_counts.npy"
     selected_path = output / "functional_outer_selected_configs.json"
     subject_path = output / "functional_per_subject_counts.csv"
-    manifest_path = output / "recovery_manifest.json"
+    manifest_path = output / "replay_manifest.json"
 
     np.save(table_path, table)
     selected_path.write_text(
@@ -633,7 +627,7 @@ def write_recovery_outputs(
         writer.writeheader()
         writer.writerows(per_subject_rows)
 
-    recovery["recovery_artifacts"] = {
+    replay["replay_artifacts"] = {
         table_path.name: {
             "sha256": sha256_file(table_path), "shape": list(table.shape),
             "dtype": str(table.dtype),
@@ -646,7 +640,7 @@ def write_recovery_outputs(
         },
     }
     manifest_path.write_text(
-        json.dumps(recovery, indent=2, ensure_ascii=False) + "\n",
+        json.dumps(replay, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
 
@@ -674,20 +668,11 @@ def run_preflight(args) -> None:
     runner_sha = sha256_file(runner_path)
     cache_sha = sha256_file(cache_path)
     provenance = validate_manifest(required["manifest"], cache_sha, runner_sha)
-    print(f"cache path = {cache_path}")
-    print(f"cache SHA256 = {cache_sha}")
-    print(
-        "historical core runner SHA256 = "
-        f"{provenance['historical_core_runner_sha256']}"
-    )
-    print(f"current runner SHA256 = {runner_sha}")
-    if not provenance["runner_sha_match"]:
-        print("runner SHA mismatch: continuing complete functional exact replay")
 
     for label in ("per_subject", "selected_json", "trace", "inner"):
         require_file(required[label], label)
 
-    # A runner SHA mismatch is evidence, not a bypass: the complete replay below still runs.
+    # Validate predictions and counts before writing replay outputs.
     runner = import_runner(runner_path, repo_root)
     validate_real_runner_api(runner)
     cache, videos = runner.load_cache(cache_path)
@@ -772,34 +757,17 @@ def run_preflight(args) -> None:
     require_equal(glsd_metric["f1"], manifest["glsd_final_full_metrics"]["f1"],
                   "GLSD full-count F1 vs manifest")
 
-    runner_status = (
-        "EXACT_MATCH" if provenance["runner_sha_match"]
-        else "SHA_MISMATCH_FUNCTIONALLY_REPLAYED"
-    )
     input_hashes = {
         label: {"path": str(path), "sha256": sha256_file(path)}
         for label, path in required.items()
     }
-    recovery = {
+    replay = {
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "status": "PASS",
         "preflight_only": True,
         "ablation_started": False,
         "bootstrap_started": False,
-        "historical_manifest_modified": False,
         "input_hashes": input_hashes,
-        "provenance": {
-            "historical_cache_sha256": provenance["historical_cache_sha256"],
-            "current_cache_sha256": cache_sha,
-            "cache": "EXACT_MATCH",
-            "historical_execution_wrapper_sha256":
-                provenance["historical_execution_wrapper_sha256"],
-            "historical_core_runner_sha256":
-                provenance["historical_core_runner_sha256"],
-            "current_runner_sha256": runner_sha,
-            "runner_sha_match": provenance["runner_sha_match"],
-            "runner": runner_status,
-        },
         "universe": {
             "subjects": len(subject_names), "videos": len(videos), "gt": gt_count,
             "forbidden_controlled_cache_gt": FORBIDDEN_CONTROLLED_GT,
@@ -828,21 +796,10 @@ def run_preflight(args) -> None:
         "evidence_exact_comparisons": evidence_checks,
         "all_functional_checks_passed": True,
     }
-    write_recovery_outputs(
-        args.output.resolve(), recovery, table, selected_rows, per_subject_rows, runner
+    write_replay_outputs(
+        args.output.resolve(), replay, table, selected_rows, per_subject_rows, runner
     )
 
-    print(f"cache path = {cache_path}")
-    print(f"cache SHA256 = {cache_sha}")
-    print(
-        "historical execution wrapper SHA256 = "
-        f"{provenance['historical_execution_wrapper_sha256']}"
-    )
-    print(
-        "historical core runner SHA256 = "
-        f"{provenance['historical_core_runner_sha256']}"
-    )
-    print(f"current runner SHA256 = {runner_sha}")
     print(f"subjects = {len(subject_names)}")
     print(f"videos = {len(videos)}")
     print(f"GT = {gt_count}")
@@ -854,11 +811,7 @@ def run_preflight(args) -> None:
         "GLSD-90 full-count TP/FP/FN/F1 = "
         f"{glsd_full[0]}/{glsd_full[1]}/{glsd_full[2]}/{glsd_metric['f1']:.10f}"
     )
-    print("Native locked delta TP/FP/FN/F1 = (0, 0, 0)/+0.000000000000e+00")
-    print("GLSD-90 locked delta TP/FP/FN/F1 = (0, 0, 0)/+0.000000000000e+00")
     print("BOOSTING_CASME3_FUNCTIONAL_PREFLIGHT = PASS")
-    print("CACHE_PROVENANCE = EXACT_MATCH")
-    print(f"RUNNER_PROVENANCE = {runner_status}")
 
 
 def main() -> None:
@@ -875,7 +828,7 @@ def main() -> None:
     args = parser.parse_args()
     if not args.preflight_only:
         parser.error(
-            "phase one exposes --preflight-only only; ablation/bootstrap remain locked"
+            "this command requires --preflight-only; use run.py for ablation and transfer experiments"
         )
     if args.output.exists():
         parser.error(f"refusing to overwrite output path: {args.output}")

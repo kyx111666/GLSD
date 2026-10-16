@@ -50,6 +50,7 @@ def configure_specs(specs):
         p = paths(name)
         for key in ('source', 'evidence', 'run_evidence', 'locked_results'):
             spec[key] = p[key]
+        spec['results'] = p['locked_results']
         if spec['kind'] == 'metst':
             spec['dump'], spec['core'] = p['responses'], p['core']
         else:

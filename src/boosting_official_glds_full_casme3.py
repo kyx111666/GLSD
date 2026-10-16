@@ -1443,7 +1443,7 @@ def decode_subject(
 
 
 # ============================================================
-# Prediction-level audit extraction
+# Prediction-level evaluation details
 # ============================================================
 
 def subject_prediction_evidence(
@@ -3149,7 +3149,7 @@ def main():
             protocol=4,
         )
 
-    auditable_payload = {
+    prediction_details = {
         "dataset":
             DATASET,
 
@@ -3189,13 +3189,13 @@ def main():
 
     with (
         out
-        / "glsd_final_predictions_auditable.pkl"
+        / "glsd_prediction_details.pkl"
     ).open(
         "wb"
     ) as f:
 
         pickle.dump(
-            auditable_payload,
+            prediction_details,
             f,
             protocol=4,
         )
@@ -3273,93 +3273,6 @@ def main():
             indent=2,
             ensure_ascii=False,
         ),
-        encoding="utf-8",
-    )
-
-    # --------------------------------------------------------
-    # Main audit Markdown
-    # --------------------------------------------------------
-
-    audit = f"""# BoostingVRME / CAS(ME)3 GLSD Official-Response Full-Pipeline Audit
-
-## Protocol identity
-
-- Official repository commit: `{git_commit}`
-- Cache SHA-256: `{manifest["cache_sha256"]}`
-- Script SHA-256: `{manifest["script_sha256"]}`
-- Subjects: {EXPECTED_SUBJECTS}
-- Videos: {EXPECTED_VIDEOS}
-- GT events in this official-response reconstruction: {EXPECTED_GT}
-- GLSD configurations: 90
-- Outer folds: 94
-- Inner validation subjects per outer fold: 93
-
-## Important protocol note
-
-This run contains 853 GT events. It is not relabeled as the separate
-858-event controlled CAS(ME)3 cache used by earlier decoder experiments.
-
-## Native exact replay hard gate
-
-- Raw: `{EXPECTED_NATIVE_RAW}`, F1 = `{native_raw_m["f1"]:.10f}`
-- Full: `{EXPECTED_NATIVE_FULL}`, F1 = `{native_full_m["f1"]:.10f}`
-- Spot predictions exact: `{native["prediction_exact"]}`
-- Recognition exact: `{native["recognition_exact"]}`
-- Matched-GT exact: `{native["matched_gt_exact"]}`
-- Native exact replay: `PASS`
-
-## GLSD-90
-
-- Reference scales: `{REFERENCE_SCALES}`
-- Local radii: `{LOCAL_RADII}`
-- Thresholds: `{THRESHOLDS}`
-- Selection: pooled inner Raw Spotting F1
-- Tie-break: F1 -> precision -> fewer FP -> fixed grid order
-- Outer subject excluded from its own inner pool: enforced by assertion
-
-## GLSD final outer-test result
-
-- Raw TP/FP/FN: `{final_raw}`
-- Raw Precision: `{raw_metrics["precision"]:.10f}`
-- Raw Recall: `{raw_metrics["recall"]:.10f}`
-- Raw F1: `{raw_metrics["f1"]:.10f}`
-
-- Full TP/FP/FN: `{final_full}`
-- Full Precision: `{full_metrics["precision"]:.10f}`
-- Full Recall: `{full_metrics["recall"]:.10f}`
-- Full F1: `{full_metrics["f1"]:.10f}`
-
-- Delta Raw vs Native: `{delta_raw:+.10f}`
-- Delta Full vs Native: `{delta_full:+.10f}`
-- GLSD Full minus published-context 0.0997: `{full_metrics["f1"] - 0.0997:+.10f}`
-
-## Persisted evidence
-
-- `glsd_search_all_90x94.csv`
-- `glsd_search_inner_fold_counts.csv`
-- `outer_selected_configs.csv`
-- `outer_selected_configs.json`
-- `outer_selection_trace.json`
-- `per_subject_counts.csv`
-- `per_video_evaluation.csv`
-- `per_prediction_evaluation.csv`
-- `glsd_final_predictions.pkl`
-- `glsd_final_predictions_auditable.pkl`
-- `run_manifest.json`
-- `run_stdout_stderr.log`
-
-## Runtime verdict
-
-`BOOSTING_CASME3_GLSD_FULL_VALIDATED = PASS`
-
-Note: stdout/stderr SHA-256 is finalized after process exit.
-"""
-
-    (
-        out
-        / "BOOSTING_CASME3_GLSD_FULL_AUDIT.md"
-    ).write_text(
-        audit,
         encoding="utf-8",
     )
 

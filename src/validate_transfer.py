@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only subject/video/configuration audit before any transfer execution."""
+"""Validate subject, video and fold correspondence before configuration transfer."""
 
 from __future__ import annotations
 
@@ -95,16 +95,15 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-root", type=Path, required=True)
     args = parser.parse_args()
-    output = args.output_root.resolve() / "audit"
+    output = args.output_root.resolve() / "validation"
     output.mkdir(parents=True, exist_ok=True)
 
     missing = [str(path) for path in required_inputs() if not path.exists()]
     if missing:
-        raise RuntimeError("TRANSFER_PROTOCOL_FAIL: missing sealed input(s):\n" + "\n".join(missing))
+        raise RuntimeError("TRANSFER_PROTOCOL_FAIL: missing input file(s):\n" + "\n".join(missing))
 
     subject_rows = []
     video_rows = []
-    universe_lines = []
     for dataset in ("sammlv", "casme3"):
         left_name = f"metst_{dataset}"
         right_name = f"boosting_{dataset}"
@@ -152,20 +151,9 @@ def main() -> None:
             })
         if dataset == "casme3" and ("15", "j") in left_videos:
             raise RuntimeError("TRANSFER_PROTOCOL_FAIL: forbidden excluded CAS(ME)3 video spNO.15_j is present")
-        universe_lines.append(
-            f"{dataset}: subjects={expected['subjects']} videos={expected['videos']} "
-            f"GT={expected['gt']} mapping=PASS"
-        )
 
     write_csv(output / "subject_mapping.csv", subject_rows)
     write_csv(output / "video_mapping.csv", video_rows)
-    (output / "universe_audit.txt").write_text(
-        "\n".join(universe_lines + [
-            "CAS(ME)3 explicit exclusion: spNO.15_j / skip index 74 preserved.",
-            "UNIVERSE_AND_MAPPING_AUDIT = PASS",
-        ]) + "\n",
-        encoding="utf-8",
-    )
     write_json(output / "mapping_gate.json", {
         "status": "PASS", "subject_mapping_complete": True,
         "video_mapping_complete": True, "casme3_spNO_15_j_excluded": True,
@@ -174,7 +162,7 @@ def main() -> None:
         "target_side_tuning_used": False, "transferred_fields": ["a0", "rho", "tau"],
         "forbidden_transferred_fields": sorted({"k", "event_geometry", "boundary_rule", "candidate_order", "conflict_rule"}),
     })
-    print("UNIVERSE_AND_MAPPING_AUDIT = PASS")
+    print("Subject and video correspondence validated.")
 
 
 if __name__ == "__main__":

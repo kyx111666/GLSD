@@ -6,10 +6,10 @@ recognition, metric and NMS code.  Run it from the root of the official
 BoostingVRME repository, for example::
 
     python boosting_official_glds_full.py \
-        --cache /content/sammlv_official_full_responses.pkl \
-        --output_dir /content/boosting_glsd_results
+        --cache data/sammlv_official_full_responses.pkl \
+        --output_dir outputs/boosting_sammlv
 
-``--mode audit`` stops after the mandatory native exact-replay gate.  ``full``
+``--mode check`` stops after the mandatory native exact-replay gate.  ``full``
 (the default) runs the nested-LOSO GLSD evaluation only after that gate passes.
 """
 
@@ -131,10 +131,10 @@ def load_cache(path: Path) -> dict:
         raise RuntimeError("this evaluator requires official SAMMLV synergy=1 and interval_strategy=1")
     direct_recognition = cache.get("direct_recognition", {})
     if set(direct_recognition) != {"pred_list", "gt_tp_list"}:
-        raise RuntimeError("cache direct-recognition audit values are missing")
+        raise RuntimeError("cache direct-recognition validation values are missing")
     direct_counts = cache.get("direct_inference_counts", {})
     if set(direct_counts) != {"raw", "full"}:
-        raise RuntimeError("cache direct-inference count audit values are missing")
+        raise RuntimeError("cache direct-inference count validation values are missing")
     videos = cache.get("videos", [])
     assert len(videos) == 79
     required_video = {
@@ -373,7 +373,7 @@ def plain_scalar(value):
     return value.item() if isinstance(value, np.generic) else value
 
 
-def auditable_prediction_evidence(
+def prediction_details(
     videos, predictions, prediction_matches, metric_video, pred_list, gt_tp_list, official, cache_config,
 ):
     """Persist evaluator/recognition outputs without participating in evaluation.
@@ -577,56 +577,6 @@ def write_csv(path: Path, rows: list[dict]) -> None:
         writer.writerows(rows)
 
 
-def write_audit(path: Path, audit: dict, selections: list[dict] | None = None) -> None:
-    lines = [
-        "# BoostingVRME SAMMLV GLSD Full-Pipeline Audit",
-        "",
-        "## Cache and native gate",
-        "",
-        f"- Cache path: `{audit['cache_path']}`",
-        f"- Cache SHA-256: `{audit['cache_sha256']}`",
-        f"- Videos: {audit['video_count']} / 79.",
-        f"- Subjects: {audit['subject_count']} / 29.",
-        f"- Native raw: `{audit['native']['raw_counts']}`; F1 = {audit['native']['raw']['F1']:.10f}.",
-        f"- Native full: `{audit['native']['full_counts']}`; F1 = {audit['native']['full']['F1']:.10f}.",
-        f"- Decoded spotting predictions exact match: `{audit['native']['decoded_predictions_match']}`.",
-        f"- Recognition prediction sequence exact match: `{audit['native']['recognition_predictions_match']}`.",
-        f"- Matched-GT sequence exact match: `{audit['native']['matched_gt_sequence_match']}`.",
-        f"- Native gate: `{audit['native']['status']}`.",
-        "",
-        "## Locked implementation",
-        "",
-        "- GLSD grid: 90 = 3 reference scales x 3 local radii x 10 thresholds.",
-        "- GLSD score: `S(c) = (G(c) + L(c)) / 2`; missing-scale support is zero and multi-scale aggregation is median.",
-        "- Official BoostingVRME interval geometry is reused by direct calls to `training_utils.spotting()` with `interval_strategy=1`; its native `nms()` remains in that call path.",
-        "- Official recognition aggregation is reused by direct calls to `training_utils.recognition()` over each newly decoded GLSD interval.",
-        "- Official neutral/result synergy is applied with the cached official `emotion_type` convention.",
-        "- Nested selection pools each of the 28 non-outer subjects as an inner held-out validation subject; outer subject is asserted absent.",
-    ]
-    if selections is not None:
-        lines.extend(["", "## Per-outer selected configuration", ""])
-        for row in selections:
-            lines.append(
-                f"- Subject `{row['outer_subject']}`: `{row['config']}`; "
-                f"inner TP/FP/FN = {row['inner_TP']}/{row['inner_FP']}/{row['inner_FN']}; "
-                f"inner F1 = {row['inner_F1']:.10f}."
-            )
-        glsd = audit["glsd"]
-        lines.extend([
-            "", "## GLSD official-response result", "",
-            f"- Raw: `{tuple(glsd['raw_counts'])}`; F1 = {glsd['raw']['F1']:.10f}.",
-            f"- Full: `{tuple(glsd['full_counts'])}`; F1 = {glsd['full']['F1']:.10f}.",
-            f"- Delta raw: {glsd['delta_raw']:.10f}.",
-            f"- Delta full: {glsd['delta_full']:.10f}.",
-            "", "## Verdict", "", "`BOOSTING_SAMMLV_GLSD_FULL_VALIDATED = PASS`",
-        ])
-    else:
-        lines.extend([
-            "", "## Verdict", "",
-            f"`NATIVE_EXACT_REPLAY = {audit['native']['status']}`"
-            + (" (audit mode; GLSD was not executed)." if audit["native"]["status"] == "PASS" else ""),
-        ])
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def run_full(
@@ -740,7 +690,7 @@ def run_full(
     glsd_raw = np.zeros(3, dtype=np.int64)
     glsd_full = np.zeros(3, dtype=np.int64)
     final_predictions = []
-    auditable_predictions = []
+    detailed_predictions = []
     per_video_rows = []
     per_subject_rows = []
     for subject_index, videos in enumerate(grouped):
@@ -752,7 +702,7 @@ def run_full(
         # The selected config's separately evaluated outer raw count must replay exactly.
         assert tuple(raw_counts) == tuple(raw_table[selected, subject_index])
         full_counts = full_counts_from_official_synergy(raw_counts, pred_list, gt_tp_list, cache["config"])
-        evidence_raw, evidence_full, video_rows, video_evidence = auditable_prediction_evidence(
+        evidence_raw, evidence_full, video_rows, video_evidence = prediction_details(
             videos, predictions, prediction_matches, metric_video, pred_list, gt_tp_list, official, cache["config"],
         )
         assert evidence_raw == tuple(raw_counts)
@@ -782,7 +732,7 @@ def run_full(
             for row in evidence["evidence"]:
                 row["config_id"] = selected
         per_video_rows.extend(video_rows)
-        auditable_predictions.extend(video_evidence)
+        detailed_predictions.extend(video_evidence)
         for video, predictions_for_video in zip(videos, predictions):
             final_predictions.append({
                 "subject_id": video["subject_id"],
@@ -800,7 +750,7 @@ def run_full(
     assert tuple(sum(row[f"final_{name}_contribution"] for row in per_video_rows) for name in ("TP", "FP", "FN")) == full_counts
     assert tuple(sum(row[f"raw_{name}"] for row in per_subject_rows) for name in ("TP", "FP", "FN")) == raw_counts
     assert tuple(sum(row[f"full_{name}"] for row in per_subject_rows) for name in ("TP", "FP", "FN")) == full_counts
-    audit = {
+    validation = {
         "cache_path": str(cache_path),
         "cache_sha256": cache_sha256(cache_path),
         "video_count": len(cache["videos"]),
@@ -824,31 +774,30 @@ def run_full(
     write_json(output_dir / "outer_selection_trace.json", selection_traces)
     with (output_dir / "glsd_final_predictions.pkl").open("wb") as handle:
         pickle.dump(final_predictions, handle, protocol=pickle.HIGHEST_PROTOCOL)
-    with (output_dir / "glsd_final_predictions_auditable.pkl").open("wb") as handle:
-        pickle.dump(auditable_predictions, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    with (output_dir / "glsd_prediction_details.pkl").open("wb") as handle:
+        pickle.dump(detailed_predictions, handle, protocol=pickle.HIGHEST_PROTOCOL)
     write_csv(output_dir / "per_video_evaluation.csv", per_video_rows)
     write_csv(output_dir / "per_subject_counts.csv", per_subject_rows)
     write_json(
         output_dir / "run_manifest.json",
         make_run_manifest(cache_path, output_dir, len(cache["videos"]), len(subjects), started_at),
     )
-    write_audit(output_dir / "BOOSTING_SAMMLV_GLSD_FULL_AUDIT.md", audit, selection_rows)
 
     print("==============================")
     print("GLSD official-response")
     print("==============================")
-    print("Raw  : TP/FP/FN = %d/%d/%d, F1 = %.4f" % (*raw_counts, audit["glsd"]["raw"]["F1"]))
-    print("Full : TP/FP/FN = %d/%d/%d, F1 = %.4f" % (*full_counts, audit["glsd"]["full"]["F1"]))
-    print("Delta raw  = %.10f" % audit["glsd"]["delta_raw"])
-    print("Delta full = %.10f" % audit["glsd"]["delta_full"])
+    print("Raw  : TP/FP/FN = %d/%d/%d, F1 = %.4f" % (*raw_counts, validation["glsd"]["raw"]["F1"]))
+    print("Full : TP/FP/FN = %d/%d/%d, F1 = %.4f" % (*full_counts, validation["glsd"]["full"]["F1"]))
+    print("Delta raw  = %.10f" % validation["glsd"]["delta_raw"])
+    print("Delta full = %.10f" % validation["glsd"]["delta_full"])
     print("BOOSTING_SAMMLV_GLSD_FULL_VALIDATED = PASS")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--cache", type=Path, help="recorder-produced SAMMLV official response cache")
-    parser.add_argument("--output_dir", required=True, type=Path, help="directory for audit and evaluation outputs")
-    parser.add_argument("--mode", choices=("audit", "full"), default="full")
+    parser.add_argument("--output_dir", required=True, type=Path, help="directory for evaluation outputs")
+    parser.add_argument("--mode", choices=("check", "full"), default="full")
     parser.add_argument(
         "--finalize_log", type=Path,
         help="hash an externally tee'd completed run log and update run_manifest.json; no evaluation is run",
@@ -888,25 +837,11 @@ def main() -> None:
     print("decoded spotting predictions exact match =", native["decoded_predictions_match"])
     print("recognition prediction sequence exact match =", native["recognition_predictions_match"])
     print("matched-GT sequence exact match =", native["matched_gt_sequence_match"])
-    audit = {
-        "cache_path": str(args.cache),
-        "cache_sha256": cache_sha256(args.cache),
-        "video_count": len(cache["videos"]),
-        "subject_count": len(subjects),
-        "native": {
-            **native,
-            "raw": metrics(native["raw_counts"]),
-            "full": metrics(native["full_counts"]),
-            "status": "PASS" if native_passed else "FAIL",
-        },
-    }
     if not native_passed:
-        write_audit(args.output_dir / "BOOSTING_SAMMLV_GLSD_FULL_AUDIT.md", audit)
         print("NATIVE_EXACT_REPLAY = FAIL", file=sys.stderr)
         raise SystemExit(1)
     print("NATIVE_EXACT_REPLAY = PASS")
-    if args.mode == "audit":
-        write_audit(args.output_dir / "BOOSTING_SAMMLV_GLSD_FULL_AUDIT.md", audit)
+    if args.mode == "check":
         return
     run_full(cache, args.cache, args.output_dir, native, started_at)
 
