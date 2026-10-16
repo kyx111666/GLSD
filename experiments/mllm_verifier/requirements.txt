@@ -1,4 +1,0 @@
-accelerate
-Pillow
-qwen-vl-utils
-transformers

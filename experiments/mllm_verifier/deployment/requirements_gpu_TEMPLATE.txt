@@ -1,8 +1,0 @@
-# Select a platform-appropriate PyTorch build on the future GPU server.
-torch
-transformers
-accelerate
-qwen-vl-utils
-# Optional, required only for int8/int4:
-bitsandbytes
-

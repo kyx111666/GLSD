@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying GLSD manuscript when using this code."
+title: "Global-Local Saliency Decoding for Micro-Expression Spotting in Long Videos"
+type: software
+authors:
+  - family-names: Xie
+    given-names: Keying
+  - family-names: Jia
+    given-names: Yuxin
+  - family-names: Zeng
+    given-names: Yijiang
+  - family-names: Lan
+    given-names: Xing
+  - family-names: Liu
+    given-names: Yinan
+  - family-names: Ren
+    given-names: Feiliang
+  - family-names: Liang
+    given-names: Chao
+repository-code: "https://github.com/kyx111666/GLSD"
+license: MIT

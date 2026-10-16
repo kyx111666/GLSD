@@ -1,0 +1,32 @@
+{
+  "metst_sammlv": {
+    "upstream": "../external/ME-TST",
+    "responses": "../data/metst_sammlv/responses",
+    "evidence": "../data/metst_sammlv/evidence",
+    "run_evidence": "../data/metst_sammlv/evidence",
+    "locked_results": "../data/metst_sammlv/evidence",
+    "preregistration": "../data/metst_sammlv/preregistration.json"
+  },
+  "metst_casme3": {
+    "upstream": "../external/ME-TST",
+    "responses": "../data/metst_casme3/responses",
+    "evidence": "../data/metst_casme3/evidence",
+    "run_evidence": "../data/metst_casme3/evidence",
+    "locked_results": "../data/metst_casme3/evidence",
+    "preregistration": "../data/metst_casme3/preregistration.json"
+  },
+  "boosting_sammlv": {
+    "upstream": "../external/BoostingVRME",
+    "responses": "../data/boosting_sammlv/responses.pkl",
+    "evidence": "../data/boosting_sammlv/evidence",
+    "run_evidence": "../data/boosting_sammlv/evidence",
+    "locked_results": "../data/boosting_sammlv/evidence"
+  },
+  "boosting_casme3": {
+    "upstream": "../external/BoostingVRME",
+    "responses": "../data/boosting_casme3/responses.pkl",
+    "evidence": "../data/boosting_casme3/evidence",
+    "run_evidence": "../data/boosting_casme3/evidence",
+    "locked_results": "../data/boosting_casme3/evidence"
+  }
+}

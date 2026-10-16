@@ -1,82 +1,71 @@
 # GLSD
 
-Reference implementation, notebooks, and reproducibility materials for the
-Global-Local Saliency Decoder (GLSD) study on long-video micro-expression
-spotting. 
+Code for **Global-Local Saliency Decoding for Micro-Expression Spotting in Long Videos**.
 
-The repository is organised around experiment families rather than one large
-training script. The main implementation operates on frozen temporal response
-curves and keeps each upstream detector's native interval construction rules.
-
-## Repository map
-
-| Directory | Contents |
-| --- | --- |
-| `experiments/glsd_phase0/` | Boundary, dense-segment, sparse-event, persistence, and decoder diagnostics. |
-| `experiments/controlled_exploration/` | EXP-1 through EXP-7 controlled studies and their protocol files. |
-| `experiments/official_response_ablation/` | Official-response component ablations and fusion screening programs. |
-| `experiments/cross_pipeline_transfer/` | Cross-backbone transfer checks and preflight utilities. |
-| `experiments/persistence/` | Persistence and morphology selection programs for the two main backbones. |
-| `experiments/novel_method/` | Independent decoder candidates, audits, and feasibility studies. |
-| `experiments/baselines/` | Baseline implementations kept separate from the GLSD code. |
-| `experiments/mllm_verifier/` | Optional frame-level verification experiments and Colab entry points. |
-| `notebooks/` | Cleaned Colab notebooks with execution output and runtime metadata removed. |
-| `tests/` | Local protocol and decoder tests that do not require the private datasets. |
-| `docs/` | Scope, reproduction notes, and the experiment index. |
+GLSD selects peaks from frozen temporal responses using normalized global prominence and aligned local multi-scale saliency. ME-TST+ and BoostingVRME retain their own event boundaries, candidate order and conflict handling.
 
 ## Quick start
 
-Create a small environment for the cache-level decoder checks:
+Use a Python 3.10+ environment:
 
 ```bash
-python3 -m venv .venv
+python -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements/cache_reproduction.txt
-python -m unittest discover -s tests -p 'test_*.py'
+python -m pip install -r requirements.txt
+python examples/decode_response.py
 ```
 
-The tests exercise deterministic candidate generation, matching, and selection
-logic. Full experiments require the corresponding response caches, annotations,
-and (for baseline training) model weights. Those inputs are intentionally not
-stored in this repository.
+The example scores a synthetic response and requires no dataset or upstream model. It prints candidate peaks, global/local scores and retained peaks.
 
-For a particular experiment, run the entry point from the repository root. For
-example:
+## Experiments
+
+| Experiment | Command |
+| --- | --- |
+| Native, G, L and GLSD; locked component ablation | `python run.py search ...` |
+| Replay saved Native/GLSD configurations | `python run.py replay ...` |
+| Locked fusion-weight ablation | `python run.py ablation ...` |
+| Cross-pipeline configuration transfer | `python run.py transfer ...` |
+| Threshold sensitivity (τ ± 0.05) | `python run.py threshold ...` |
+| Decoder runtime | `python run.py runtime ...` |
+
+All paths are supplied through `configs/inputs.example.json`; copy it to `configs/inputs.json` and fill in your local inputs. Relative paths resolve from the configuration file, independently of the shell's working directory.
 
 ```bash
-python3 experiments/glsd_phase0/run_dense_segment_phase0_v2.py
-python3 experiments/controlled_exploration/EXP2C_reference_evidence_decoupling/run_exp2c.py
+python run.py check --config configs/inputs.json
+python run.py search --config configs/inputs.json \
+  --setting boosting_sammlv --output outputs/boosting_sammlv
 ```
 
-The scripts write new results beside their experiment directory or to the
-output path specified by their command-line arguments. Do not place private
-response caches, videos, labels, or model weights under version control.
+Settings are `metst_sammlv`, `metst_casme3`, `boosting_sammlv` and `boosting_casme3`. Full experiments require the corresponding official response dumps/caches, upstream evaluation code and original experiment metadata. They do not retrain the response generators.
 
-## Reproduction boundary
+See [reproduction instructions](docs/REPRODUCE.md) for input formats and experiment commands, and [the selection protocol](docs/PROTOCOL.md) for the GLSD parameter-selection rule.
 
-The public package contains source code, configuration, protocol descriptions,
-and tests. It does not contain original videos, annotations, response caches,
-trained weights, local Drive folders, result archives, or paper build output.
-See [docs/REPRODUCE.md](docs/REPRODUCE.md) for the required external inputs and
-the difference between cache-level replay and full backbone training.
+## Layout
 
-The files under `experiments/baselines/` retain their original upstream layout
-where practical. Use their local README and requirements file in a separate
-environment; the legacy pins are not compatible with the cache-level
-environment above.
+- `src/`: decoder implementations, experiment runners and evaluation helpers.
+- `run.py`: portable experiment launcher.
+- `configs/`: input configuration template.
+- `examples/`: synthetic response example.
+- `tests/`: decoder, evaluator, transfer and launcher regression checks.
+- `docs/`: reproduction, protocol and upstream dependencies.
 
-## Release hygiene
+## Tests
 
-Notebook execution state has been removed. Generated results, caches, logs,
-virtual environments, archives, and platform-specific files are ignored by
-`.gitignore`. A release manifest is written to `FILE_MANIFEST.sha256` after the
-final source review.
+```bash
+PYTHONPATH=src python -m unittest discover -s tests -p 'test_locked_alpha_ablation.py'
+PYTHONPATH=src python -m unittest discover -s tests -p 'test_release.py'
+PYTHONPATH=src python -m unittest discover -s tests -p 'test_selection.py'
+PYTHONPATH=src python -m unittest discover -s tests -p 'test_paper_experiments.py'
+PYTHONPATH=src python tests/test_transfer_protocol.py
+```
+
+The evaluator regression suite also needs the upstream BoostingVRME evaluator:
+
+```bash
+GLSD_BOOSTING_ROOT=external/BoostingVRME PYTHONPATH=src \
+  python -m unittest discover -s tests -p 'test_*.py'
+```
 
 ## License
 
-The original GLSD code is released under the [MIT License](LICENSE).
-
-Third-party and baseline components under `experiments/baselines/` and
-`experiments/third_party/` are excluded from the GLSD license and remain
-subject to their original license terms. See
-[docs/THIRD_PARTY.md](docs/THIRD_PARTY.md) for details.
+Original GLSD code is released under the [MIT License](LICENSE). Upstream software is obtained separately and retains its own license; see [third-party dependencies](docs/THIRD_PARTY.md).
